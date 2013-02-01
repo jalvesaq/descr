@@ -1,0 +1,16 @@
+
+export(CrossTable, crosstab, LogRegR2, freq, fromUTF8, toUTF8, descr,
+compmeans, histkdnc, fwf2csv, file.head, forODFTable)
+importFrom("xtable", xtable)
+
+S3method(print, CrossTable)
+S3method(print, freqtable)
+S3method(print, meanscomp)
+S3method(print, LogRegR2)
+
+S3method(plot, freqtable)
+S3method(plot, meanscomp)
+S3method(plot, CrossTable)
+
+S3method(dim, CrossTable)
+S3method(xtable, CrossTable)

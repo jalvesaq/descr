@@ -1,0 +1,14 @@
+Package: descr
+Version: 1.0.1
+Date: 2013-01-15
+Title: Descriptive statistics
+Author: Jakson Aquino. Includes R source code and/or documentation
+        written by Dirk Enzmann, Marc Schwartz, Nitin Jain, and Stefan
+        Kraft
+Maintainer: Jakson Aquino <jalvesaq@gmail.com>
+Encoding: UTF-8
+Imports: xtable
+Description: This package contains functions to describe weighted
+        categorical variables and functions to facilitate the character
+        encoding conversion of objects.
+License: GPL (>= 2)
