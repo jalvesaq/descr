@@ -7,16 +7,21 @@ xtable.CrossTable <- function(x, multirow = FALSE, hline = FALSE, caption = NULL
     nc <- dim(x$t)[2]
     nt <- cbind(rownames(x$t), x$t, x$rs)
 
-    if(multirow)
-        colname1 <- paste("\\multirow{2}{*}{", attr(x, "xlab"), "} & \\multicolumn{",
-                          length(x$t[1,]), "}{c}{", attr(x, "ylab"), "} & \\multirow{2}{*}{",
+    if(multirow){
+        colname1 <- paste("\\multirow{2}{*}{",
+                          gsub("\\$", "\\\\$", attr(x, "xlab")),
+                          "} & \\multicolumn{",
+                          length(x$t[1,]), "}{c}{",
+                          gsub("\\$", "\\\\$", attr(x, "ylab")),
+                          "} & \\multirow{2}{*}{",
                           gettext("Total", domain = "R-descr"), "}\\\\\n \\cline{2-",
                           length(x$t[1,])+1,"}", sep = "")
-    else
+        colnames(nt) <- c(colname1, colnames(x$t), " ")
+    } else {
         colname1 <- attr(x, "xlab")
+        colnames(nt) <- c(attr(x, "xlab"), colnames(x$t), gettext("Total", domain = "R-descr"))
+    }
 
-    colnames(nt) <- c(colname1, colnames(x$t), " ")
-                      paste(sep = "")
 
     if(x$format == "SPSS")
         hdd <- 100

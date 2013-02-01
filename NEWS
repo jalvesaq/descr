@@ -1,3 +1,10 @@
+Version 1.0.2 (2013-02-01)
+--------------------------
+
+  Bug fix:
+
+    - R/xtable.R: Fix column name "Total" and deal with "$" in label names.
+
 Version 1.0.1 (2013-01-15)
 --------------------------
 
