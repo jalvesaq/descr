@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-15 08:46-0300\n"
+"POT-Creation-Date: 2013-05-19 10:15-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,7 +43,7 @@ msgstr ""
 
 #: descr/R/CrossTable.R:282 descr/R/CrossTable.R:509 descr/R/compmeans.R:116
 #: descr/R/forODFTable.R:71 descr/R/forODFTable.R:72 descr/R/freq.R:75
-#: descr/R/xtable.R:13 descr/R/xtable.R:111
+#: descr/R/xtable.R:16 descr/R/xtable.R:21 descr/R/xtable.R:115
 msgid "Total"
 msgstr ""
 
@@ -107,6 +107,10 @@ msgstr ""
 msgid "|           Adj Std Resid |"
 msgstr ""
 
+#: descr/R/CrossTable.R:362
+msgid "Total Observations in Table:"
+msgstr ""
+
 #: descr/R/CrossTable.R:413
 msgid "Number of Missing Observations:"
 msgstr ""
@@ -144,7 +148,6 @@ msgid "Alternative hypothesis: true odds ratio is not equal to 1"
 msgstr ""
 
 #: descr/R/CrossTable.R:644 descr/R/CrossTable.R:649 descr/R/CrossTable.R:654
-#, c-format
 msgid "95% confidence interval:"
 msgstr ""
 
@@ -273,7 +276,7 @@ msgid "Sig."
 msgstr ""
 
 #: descr/R/descr.R:82
-msgid "Cox & Snell Index"
+msgid "Cox and Snell Index"
 msgstr ""
 
 #: descr/R/descr.R:83
@@ -289,7 +292,6 @@ msgid "No logistic regression model, no pseudo R^2 computed."
 msgstr ""
 
 #: descr/R/forODFTable.R:5
-#, c-format
 msgid "'%s' should be of class 'CrossTable'."
 msgstr ""
 

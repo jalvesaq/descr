@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: descr 0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-15 08:46-0300\n"
-"PO-Revision-Date: 2013-01-15 08:47-0300\n"
+"POT-Creation-Date: 2013-05-19 10:15-0300\n"
+"PO-Revision-Date: 2013-05-19 10:15-0300\n"
 "Last-Translator: Jakson Aquino <jalvesaq@gmail.com>\n"
 "Language-Team: pt <pt@li.org>\n"
 "Language: \n"
@@ -42,7 +42,7 @@ msgstr "formato desconhecido"
 
 #: descr/R/CrossTable.R:282 descr/R/CrossTable.R:509 descr/R/compmeans.R:116
 #: descr/R/forODFTable.R:71 descr/R/forODFTable.R:72 descr/R/freq.R:75
-#: descr/R/xtable.R:13 descr/R/xtable.R:111
+#: descr/R/xtable.R:16 descr/R/xtable.R:21 descr/R/xtable.R:115
 msgid "Total"
 msgstr "Total"
 
@@ -105,6 +105,10 @@ msgstr "|          Resíduo padrão |"
 #: descr/R/CrossTable.R:357
 msgid "|           Adj Std Resid |"
 msgstr "| Resíduo padrão ajustado |"
+
+#: descr/R/CrossTable.R:362
+msgid "Total Observations in Table:"
+msgstr "Total de observações na tabela:"
 
 #: descr/R/CrossTable.R:413
 msgid "Number of Missing Observations:"
@@ -272,8 +276,8 @@ msgid "Sig."
 msgstr "Sig."
 
 #: descr/R/descr.R:82
-msgid "Cox & Snell Index"
-msgstr "Índice de Cox & Snell"
+msgid "Cox and Snell Index"
+msgstr "Índice de Cox e Snell"
 
 #: descr/R/descr.R:83
 msgid "Nagelkerke Index"
@@ -288,7 +292,6 @@ msgid "No logistic regression model, no pseudo R^2 computed."
 msgstr "Nenhum modelo de regressão logística; nenhum pseudo R² calculado."
 
 #: descr/R/forODFTable.R:5
-#, c-format
 msgid "'%s' should be of class 'CrossTable'."
 msgstr "O atributo 'class' do objeto '%s' deveria ser 'CrossTable'."
 
