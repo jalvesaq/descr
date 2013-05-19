@@ -48,9 +48,8 @@ f <- freq(x, w, user.missing = "No answer", plot = FALSE)
 f
 plot(f)
 \dontrun{
-print(xtable(f))
 # If the decimal separator in your country is a comma:
 # options(OutDec = ",")
-print(xtable(f, align = "lrrr", display = c("s", "d", "f", "f")))
+print(xtable(f))
 }
 }

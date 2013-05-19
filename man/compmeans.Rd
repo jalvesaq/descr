@@ -57,7 +57,6 @@ plot(comp, col = c("pink", "lightblue"), ylab = "income", xlab = "sex")
 library(xtable)
 # If the decimal separator in your country is a comma:
 # options(OutDec = ",")
-print(xtable(comp, align = "lrrr", caption = "Income according to sex",
-             label = "tab:incsx", display = c("s", "f", "d", "f")))
+print(xtable(comp, caption = "Income according to sex", label = "tab:incsx"))
 }
 }

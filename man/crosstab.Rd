@@ -84,10 +84,9 @@ ct <- crosstab(income, educ, w, expected = TRUE, plot = FALSE)
 ct
 plot(ct, inv.y = TRUE)
 \dontrun{
+library(xtable)
 print(xtable(ct))
-print(xtable(ct, decimal.mark = ",", digits = 1,
-             multirow = TRUE, hline = TRUE, align = "llrrr"),
-      sanitize.text.function = function(x) x,
-      include.rownames = FALSE) 
+print(xtable(ct, decimal.mark = ",", multirow = TRUE, hline = TRUE),
+      sanitize.text.function = function(x) x, include.rownames = FALSE)
 }
 }

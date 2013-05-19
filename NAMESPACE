@@ -14,3 +14,5 @@ S3method(plot, CrossTable)
 
 S3method(dim, CrossTable)
 S3method(xtable, CrossTable)
+S3method(xtable, freqtable)
+S3method(xtable, meanscomp)
