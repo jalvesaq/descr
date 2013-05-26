@@ -6,7 +6,7 @@
   argument and produces a mosaicplot.
 }
 \usage{
-\method{plot}{CrossTable}(x, xlab, ylab, main = "", col,
+\method{plot}{CrossTable}(x, xlab, ylab, main = "",
            inv.x = FALSE, inv.y = FALSE, \dots)
 }
 
@@ -15,8 +15,6 @@
   \item{xlab}{See \code{\link[graphics]{plot.default}}.}
   \item{ylab}{See \code{\link[graphics]{plot.default}}.}
   \item{main}{See \code{\link[graphics]{plot.default}}.}
-  \item{col}{A specification for the default plotting color. (See section
-    \sQuote{Color Specification} of \code{\link[graphics]{par}}).}
   \item{inv.x}{A logical value indicating whether the order of the levels of
     the \code{x} variable should be inverted.}
   \item{inv.y}{A logical value indicating whether the order of the levels of
