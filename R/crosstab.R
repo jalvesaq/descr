@@ -60,7 +60,7 @@ crosstab <- function(x, y, weight = NULL, digits = 3, max.width = NA,
 }
 
 
-plot.CrossTable <- function(x, xlab, ylab, main = "", inv.x = FALSE, inv.y = FALSE, ...)
+plot.CrossTable <- function(x, xlab, ylab, main = "", col, inv.x = FALSE, inv.y = FALSE, ...)
 {
     tabforplot <- x$t
     if(missing(xlab)){
@@ -79,14 +79,17 @@ plot.CrossTable <- function(x, xlab, ylab, main = "", inv.x = FALSE, inv.y = FAL
     }
     nxlev <- dim(tabforplot)[1]
     nylev <- dim(tabforplot)[2]
+    if(missing(col)){
+        col.min <- 0.9 - 0.25 * (nylev - 1)
+        if(col.min < 0.3)
+            col.min  <- 0.3
+        col <- gray.colors(nylev, 0.9, col.min)
+    }
     if(inv.x)
         tabforplot <- tabforplot[nxlev:1, ]
     if(inv.y)
         tabforplot <- tabforplot[, nylev:1]
     class(tabforplot) <- "table"
-    if(length(grep("^col", names(list(...)))) == 0)
-        mosaicplot(tabforplot, main = main, xlab = xlab, ylab = ylab, col = "lightgray", ...)
-    else
-        mosaicplot(tabforplot, main = main, xlab = xlab, ylab = ylab, ...)
+    mosaicplot(tabforplot, main = main, xlab = xlab, ylab = ylab, col = col, ...)
 }
 
