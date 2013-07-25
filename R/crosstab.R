@@ -90,6 +90,9 @@ plot.CrossTable <- function(x, xlab, ylab, main = "", col, inv.x = FALSE, inv.y 
     if(inv.y)
         tabforplot <- tabforplot[, nylev:1]
     class(tabforplot) <- "table"
-    mosaicplot(tabforplot, main = main, xlab = xlab, ylab = ylab, col = col, ...)
+    if(length(grep("^color$", names(list(...)))) == 0)
+        mosaicplot(tabforplot, main = main, xlab = xlab, ylab = ylab, col = col, ...)
+    else
+        mosaicplot(tabforplot, main = main, xlab = xlab, ylab = ylab, ...)
 }
 
