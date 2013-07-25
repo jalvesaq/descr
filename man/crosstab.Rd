@@ -60,7 +60,9 @@ crosstab(x, y, weight = NULL, digits = 3, max.width = NA,
   \code{crosstab} invokes the \code{\link{CrossTable}} with all boolean
   options set to \code{FALSE} and \code{"SPSS"} as the default \code{format}
   option. The returned CrossTable object can be plotted as a
-  \code{\link[graphics]{mosaicplot}}.
+  \code{\link[graphics]{mosaicplot}}. Note that the gray scale colors used by
+  default in the mosaic plot do not have any statistical meaning. The colors
+  are used only to ease the plot interpretation.
 }
 
 \author{Jakson A. Aquino \email{jalvesaq@gmail.com}}
