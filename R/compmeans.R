@@ -232,7 +232,7 @@ plot.meanscomp <- function(x, xlab, ylab, width, col, ...)
     } else {
         d <- data.frame(v, f, w)
         dd <- split(d, f)
-        zz <- lapply(dd, function(d) descr:::spBwplotStats(d$v, d$w))
+        zz <- lapply(dd, function(d) spBwplotStats(d$v, d$w))
         z <- zz[[1]]
         z$nzero <- NULL
         z <- unclass(z)
