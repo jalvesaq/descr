@@ -263,7 +263,7 @@ print.CrossTable <- function(x, ...)
 
     nsep <- "  | " # normal separator
     if(format == "SAS") {
-	resid <- sresid <- asresid <- FALSE
+	#resid <- sresid <- asresid <- FALSE
 	hdd <- 1
 	psep <- "  | " # percent separator
     } else {

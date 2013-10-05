@@ -44,14 +44,10 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
     be included.}
   \item{mcnemar}{If \code{TRUE}, the results of a McNemar test will
     be included.}
-  \item{resid}{If \code{TRUE}, residual (Pearson) will be included. The value
-    of \code{resid} will be set to \code{FALSE} if \code{format = "SAS"}.}
-  \item{sresid}{If \code{TRUE},  standardized residual will be included. The
-    value of \code{sresid} will be set to \code{FALSE} if \code{format =
-      "SAS"}.}
+  \item{resid}{If \code{TRUE}, residual (Pearson) will be included.}
+  \item{sresid}{If \code{TRUE},  standardized residual will be included.}
   \item{asresid}{If \code{TRUE}, adjusted standardized residual will be
-    included. The value of \code{asresid} will be set to \code{FALSE} if
-    \code{format = "SAS"}.}
+    included.}
   \item{missing.include}{If \code{TRUE}, then remove any unused factor levels.}
   \item{format}{Either SAS (default) or SPSS, depending on the type of
     output desired.}
