@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-19 10:15-0300\n"
+"POT-Creation-Date: 2013-10-06 12:01-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -263,31 +263,35 @@ msgstr ""
 msgid "Number of levels of \"f\" is higher than maxlevels."
 msgstr ""
 
-#: descr/R/descr.R:79
-msgid "Chi2"
-msgstr ""
-
-#: descr/R/descr.R:80
-msgid "Df"
+#: descr/R/dataframe2txt.R:115
+msgid "Repeated labels in "
 msgstr ""
 
 #: descr/R/descr.R:81
-msgid "Sig."
+msgid "Chi2"
 msgstr ""
 
 #: descr/R/descr.R:82
-msgid "Cox and Snell Index"
+msgid "Df"
 msgstr ""
 
 #: descr/R/descr.R:83
-msgid "Nagelkerke Index"
+msgid "Sig."
 msgstr ""
 
 #: descr/R/descr.R:84
+msgid "Cox and Snell Index"
+msgstr ""
+
+#: descr/R/descr.R:85
+msgid "Nagelkerke Index"
+msgstr ""
+
+#: descr/R/descr.R:86
 msgid "McFadden's R2"
 msgstr ""
 
-#: descr/R/descr.R:92
+#: descr/R/descr.R:94
 msgid "No logistic regression model, no pseudo R^2 computed."
 msgstr ""
 

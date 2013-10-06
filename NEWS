@@ -1,9 +1,15 @@
-Version 1.0.2 (2013-02-01)
+Version 1.0.2 (2013-10-06)
 --------------------------
 
   Bug fix:
 
     - R/xtable.R: Fix column name "Total" and deal with "$" in label names.
+
+  Change:
+
+    - Make CrossTable() to print residuals even if format="SAS".
+
+    - New function: data.frame2txt().
 
 Version 1.0.1 (2013-01-15)
 --------------------------

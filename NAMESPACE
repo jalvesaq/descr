@@ -1,6 +1,6 @@
 
 export(CrossTable, crosstab, LogRegR2, freq, fromUTF8, toUTF8, descr,
-compmeans, histkdnc, fwf2csv, file.head, forODFTable)
+compmeans, histkdnc, fwf2csv, file.head, forODFTable, data.frame2txt)
 importFrom("xtable", xtable)
 
 S3method(print, CrossTable)

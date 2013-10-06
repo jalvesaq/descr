@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: descr 0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-19 10:15-0300\n"
-"PO-Revision-Date: 2013-05-19 10:15-0300\n"
+"POT-Creation-Date: 2013-10-06 12:01-0300\n"
+"PO-Revision-Date: 2013-10-06 11:59-0300\n"
 "Last-Translator: Jakson Aquino <jalvesaq@gmail.com>\n"
 "Language-Team: pt <pt@li.org>\n"
 "Language: \n"
@@ -263,31 +263,35 @@ msgstr "f não é factor."
 msgid "Number of levels of \"f\" is higher than maxlevels."
 msgstr "Número de levels de \"f\" é maior do que maxlevels."
 
-#: descr/R/descr.R:79
+#: descr/R/dataframe2txt.R:115
+msgid "Repeated labels in "
+msgstr "Rótulos repetidos em "
+
+#: descr/R/descr.R:81
 msgid "Chi2"
 msgstr "Qui²"
 
-#: descr/R/descr.R:80
+#: descr/R/descr.R:82
 msgid "Df"
 msgstr "Gl"
 
-#: descr/R/descr.R:81
+#: descr/R/descr.R:83
 msgid "Sig."
 msgstr "Sig."
 
-#: descr/R/descr.R:82
+#: descr/R/descr.R:84
 msgid "Cox and Snell Index"
 msgstr "Índice de Cox e Snell"
 
-#: descr/R/descr.R:83
+#: descr/R/descr.R:85
 msgid "Nagelkerke Index"
 msgstr "Índice de Nagelkerke"
 
-#: descr/R/descr.R:84
+#: descr/R/descr.R:86
 msgid "McFadden's R2"
 msgstr "R² de McFadden"
 
-#: descr/R/descr.R:92
+#: descr/R/descr.R:94
 msgid "No logistic regression model, no pseudo R^2 computed."
 msgstr "Nenhum modelo de regressão logística; nenhum pseudo R² calculado."
 
@@ -324,8 +328,8 @@ msgstr ""
 msgid "File not found:"
 msgstr "Arquivo não encontrado:"
 
-#~ msgid "Column Total"
-#~ msgstr "Total da Coluna"
-
 #~ msgid "Row Total"
 #~ msgstr "Total da Linha"
+
+#~ msgid "Column Total"
+#~ msgstr "Total da Coluna"
