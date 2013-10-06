@@ -1,6 +1,6 @@
 Package: descr
 Version: 1.0.2
-Date: 2013-02-01
+Date: 2013-10-06
 Title: Descriptive statistics
 Author: Jakson Aquino. Includes R source code and/or documentation
         written by Dirk Enzmann, Marc Schwartz, Nitin Jain, and Stefan
@@ -12,3 +12,4 @@ Description: This package contains functions to describe weighted
         categorical variables and functions to facilitate the character
         encoding conversion of objects.
 License: GPL (>= 2)
+URL: https://github.com/jalvesaq/descr
