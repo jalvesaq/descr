@@ -677,7 +677,7 @@ print.CrossTable <- function(x, ...)
 	    }
 	    cat("\n")
 
-	} ## End of if (any(dim(t)...
+	} ## End of if (any(dim(t)...))
     }
     return(invisible(x))
 }
