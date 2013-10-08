@@ -1,9 +1,12 @@
-Version 1.0.2 (2013-10-06)
+Version 1.0.2 (2013-10-08)
 --------------------------
 
   Bug fix:
 
     - R/xtable.R: Fix column name "Total" and deal with "$" in label names.
+
+    - Allow to change the values of xlim and ylim in histkdnc(). Thanks to
+      Thomas W. MacFarland for reporting the bug.
 
   Change:
 

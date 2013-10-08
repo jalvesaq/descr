@@ -8,7 +8,8 @@
 histkdnc(v, breaks = 0, include.lowest = TRUE, right = TRUE,
          main = "Histogram with kernel density and normal curve",
          xlab = deparse(substitute(v)), col = grey(0.90),
-         col.cur = c("red", "blue"), lty.cur = c(1, 1), ...) 
+         col.cur = c("red", "blue"), lty.cur = c(1, 1),
+         xlim = NULL, ylim = NULL, ...) 
 }
 \arguments{
   \item{v}{The object from which the histogram is desired.}
@@ -22,6 +23,8 @@ histkdnc(v, breaks = 0, include.lowest = TRUE, right = TRUE,
     density and normal curve.}
   \item{lty.cur}{Vector of size two with line type of, respectively, kernel
     density and normal curve.}
+  \item{xlim}{See \link[graphics]{plot.default} and \link[graphics]{hist}.}
+  \item{ylim}{See \link[graphics]{plot.default} and \link[graphics]{hist}.}
   \item{\dots}{Further arguments to be passed to \link[graphics]{hist}.}
 }
 

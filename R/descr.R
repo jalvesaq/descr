@@ -55,7 +55,8 @@ descr <- function (x)
 histkdnc <- function (v, breaks = 0, include.lowest = TRUE, right = TRUE,
     main = "Histogram with kernel density and normal curve",
     xlab = deparse(substitute(v)), col = grey(0.90),
-    col.cur = c("red", "blue"), lty.cur = c(1, 1), ...) 
+    col.cur = c("red", "blue"), lty.cur = c(1, 1),
+    xlim = NULL, ylim = NULL, ...) 
 {
     v2 <- na.omit(v)
     x <- v2
@@ -63,9 +64,12 @@ histkdnc <- function (v, breaks = 0, include.lowest = TRUE, right = TRUE,
     if (length(breaks) == 1) 
 	breaks <- h$breaks
     dens <- density(v2)
-    ylim <- range(0, h$density, dnorm(x = v2, mean = mean(v2), sd = sd(v2)), 
-	dens$y)
-    xlim <- range(v2, dens$x)
+    argv <- list(...)
+    if(is.null(ylim))
+        ylim <- range(0, h$density, dnorm(x = v2, mean = mean(v2), sd = sd(v2)),
+                      dens$y)
+    if(is.null(xlim))
+        xlim <- range(v2, dens$x)
     hist(v2, freq = FALSE, breaks = breaks, include.lowest = include.lowest, 
 	right = right, xlim = xlim, ylim = ylim, col = col, 
 	xlab = xlab, main = main, ...)
