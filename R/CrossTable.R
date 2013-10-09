@@ -319,9 +319,8 @@ print.CrossTable <- function(x, ...)
     ## Print Cell Layout
     if(cell.layout){
         cat("  ", gettext("Cell Contents", domain = "R-descr"), "\n")
-        if (format=="SAS")
-        {
-            cat("|-------------------------|\n")
+        cat("|-------------------------|\n")
+        if (format=="SAS") {
             cat(gettext("|                       N |", domain = "R-descr"), "\n")
             if (expected)
                 cat(gettext("|              Expected N |", domain = "R-descr"), "\n")
@@ -333,11 +332,7 @@ print.CrossTable <- function(x, ...)
                 cat(gettext("|           N / Col Total |", domain = "R-descr"), "\n")
             if (prop.t)                                                         
                 cat(gettext("|         N / Table Total |", domain = "R-descr"), "\n")
-            cat("|-------------------------|\n")
-        }
-        else if (format == "SPSS")
-        {
-            cat("|-------------------------|\n")
+        } else if (format == "SPSS") {
             cat(gettext("|                   Count |", domain = "R-descr"), "\n")
             if (expected)
                 cat(gettext("|         Expected Values |", domain = "R-descr"), "\n")
@@ -349,14 +344,14 @@ print.CrossTable <- function(x, ...)
                 cat(gettext("|          Column Percent |", domain = "R-descr"), "\n")
             if (prop.t)                                                           
                 cat(gettext("|           Total Percent |", domain = "R-descr"), "\n")
-            if (resid)                                                            
-                cat(gettext("|                Residual |", domain = "R-descr"), "\n")
-            if (sresid)                                                           
-                cat(gettext("|            Std Residual |", domain = "R-descr"), "\n")
-            if (asresid)                                                          
-                cat(gettext("|           Adj Std Resid |", domain = "R-descr"), "\n")
-            cat("|-------------------------|\n")
-        } ## End of if(format=="SPSS")
+        }
+        if (resid)                                                            
+            cat(gettext("|                Residual |", domain = "R-descr"), "\n")
+        if (sresid)                                                           
+            cat(gettext("|            Std Residual |", domain = "R-descr"), "\n")
+        if (asresid)                                                          
+            cat(gettext("|           Adj Std Resid |", domain = "R-descr"), "\n")
+        cat("|-------------------------|\n")
     }
 
     #cat(gettext("Total Observations in Table:", domain = "R-descr"), GT, "\n\n")
