@@ -1,4 +1,4 @@
-Version 1.0.2 (2013-10-08)
+Version 1.0.2 (2013-10-10)
 --------------------------
 
   Bug fix:
@@ -12,7 +12,7 @@ Version 1.0.2 (2013-10-08)
 
     - Make CrossTable() to print residuals even if format="SAS".
 
-    - New function: data.frame2txt().
+    - News functions: data.frame2txt() and labels2R().
 
 Version 1.0.1 (2013-01-15)
 --------------------------
