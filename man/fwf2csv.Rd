@@ -33,6 +33,9 @@ fwf2csv(fwffile, csvfile, names, begin, end,
   would be too slow.
 }
 
+\seealso{For an efficient way of reading a csv file, see the function
+  \samp{fread()} from \pkg{data.table} package.}
+
 \examples{
 \dontrun{
 tab <- rbind(c("state",   1,  2),
