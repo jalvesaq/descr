@@ -8,11 +8,11 @@ labels2R <- function(lfile, rfile, dfname = "b")
         stop(gettext("The name of file with R code to is required.",
                      domain = "R-descr"))
     if(!is.character(lfile))
-      stop("lfile must be of class character.")
+        stop("lfile must be of class character.")
     if(!is.character(rfile))
-      stop("rfile must be of class character.")
+        stop("rfile must be of class character.")
     if(!is.character(dfname))
-      stop("dfname must be of class character.")
+        stop("dfname must be of class character.")
 
     infile <- path.expand(lfile[1])
     outfile <- path.expand(rfile[1])
@@ -20,8 +20,53 @@ labels2R <- function(lfile, rfile, dfname = "b")
         msg <- paste(gettext("File not found:", domain = "R-descr"), lfile)
         stop(msg)
     }
+    if(file.exists(outfile)){
+        unlink(outfile)
+    }
 
-    .C("reallabels2R", c(infile, outfile), dfname, "", 0, PACKAGE="descr")
+    input <- readLines(infile)
+    nlines <- length(input)
+    lnum <- 1
+
+    while(lnum <= nlines){
+        cline <- input[lnum]
+        varname <- NULL
+        varlab <- NULL
+        lev <- NULL
+        lab <- NULL
+        exclud <- NULL
+        if(cline != "" && grep("^[a-zA-Z]", cline) == 1){
+            varname <- sub("^([a-zA-Z0-9_\\.]*).*", "\\1", cline)
+            if(grep(" ", cline) == 1)
+                varlab <- sub("(\\w|\\.|_)* (.*)", "\\2", cline)
+            lnum <- lnum + 1
+            cline <- input[lnum]
+            nlev = 0;
+            while(cline != "" && grep("^[0-9]* ", cline) == 1 && lnum <= nlines){
+                nlev <- nlev + 1
+                lev[nlev] <- sub("^([0-9]*) .*", "\\1", cline)
+                lab[nlev] <- sub("^[0-9]* (.*)", "\\1", cline)
+                if(lnum < nlines){
+                    lnum <- lnum + 1
+                    cline <- input[lnum]
+                }
+            }
+            if(!is.null(lev))
+                cat(dfname, "$", varname, " <- factor(", dfname, "$", varname,
+                    ",\n    levels = c(", paste(lev, collapse = ", "),
+                    '),\n    labels = c("', paste(lab, collapse = '", "'),
+                    '"))\n', sep = "", file = outfile, append = TRUE)
+            if(!is.null(varlab))
+                cat("attr(", dfname, "$", varname, ', "label") <- "', varlab, '"\n',
+                    sep = "", file = outfile, append = TRUE)
+            cat("\n", file = outfile, append = TRUE)
+        }
+        if(lnum < nlines){
+            lnum <- lnum + 1
+            cline <- input[lnum]
+        }
+    }
+
     return(invisible(NULL))
 }
 
