@@ -21,7 +21,8 @@ freq(x, w, user.missing, plot = getOption("descr.plot"), \dots)
     \code{options(descr.plot = FALSE)}
    
     in your \file{.Rprofile} to change the default function behavior.}
-  \item{\dots}{Further arguments to be passed to \code{\link{plot.freqtable}}.}
+  \item{\dots}{Further arguments to be passed to \code{\link{plot.freqtable}}
+    if \code{plot = TRUE}.}
 }
 \details{
   A column with cumulative percents are added to the frequency table if \code{x}
