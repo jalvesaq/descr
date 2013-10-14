@@ -29,21 +29,16 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
   \item{prop.r}{If \code{TRUE}, row proportions will be included.}
   \item{prop.c}{If \code{TRUE}, column proportions will be included.}
   \item{prop.t}{If \code{TRUE}, table proportions will be included.}
-  \item{expected}{If \code{TRUE}, chisq will be set to \code{TRUE} and
-    expected cell counts from the \eqn{\chi^2}{Chi-Square} will be included.
-    The value of \code{expected} will be set to \code{TRUE} if \code{chisq},
-    \code{resid}, \code{sresid}, \code{asresid} or \code{prop.chisq} is
-    \code{TRUE}.}
+  \item{expected}{If \code{TRUE}, expected cell counts from the
+    \eqn{\chi^2}{Chi-Square} will be included.}
   \item{prop.chisq}{If \code{TRUE}, chi-square contribution of each cell will be
     included.}
   \item{chisq}{If \code{TRUE}, the results of a chi-square test will be
-    included. The value of \code{chisq} will be set to \code{TRUE} if
-    \code{expected}, \code{resid}, \code{sresid} or \code{prop.chisq} is
-    \code{TRUE}.}
+    printed after the table.}
   \item{fisher}{If \code{TRUE}, the results of a Fisher Exact test will
-    be included.}
-  \item{mcnemar}{If \code{TRUE}, the results of a McNemar test will
-    be included.}
+    be printed after the table}
+  \item{mcnemar}{If \code{TRUE}, the results of a McNemar test will be printed
+  after the table.}
   \item{resid}{If \code{TRUE}, residual (Pearson) will be included.}
   \item{sresid}{If \code{TRUE},  standardized residual will be included.}
   \item{asresid}{If \code{TRUE}, adjusted standardized residual will be
@@ -61,14 +56,15 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
   \item{\dots}{Optional arguments passed to \code{\link[stats]{chisq.test}}.}
 }
 \details{
-  A summary table will be generated with cell row, column and table proportions
-  and marginal totals and proportions. Expected cell counts can be printed if
-  desired (if 'chisq = TRUE'). In the case of a 2 x 2 table, both corrected and
+  A summary table will be generated with cell row, column and table
+  proportions and marginal totals and proportions. Expected cell counts can be
+  printed if desired. In the case of a 2 x 2 table, both corrected and
   uncorrected values will be included for appropriate tests. In the case of
-  tabulating a single vector, cell counts and table proportions will be printed.
+  tabulating a single vector, cell counts and table proportions will be
+  printed.
 
-  Note 1: If 'x' is a vector and 'y' is not specified, no statistical tests will
-  be performed, even if any are set to \code{TRUE}.
+  Note 1: If 'x' is a vector and 'y' is not specified, no statistical tests
+  will be performed, even if any are set to \code{TRUE}.
 
   Note 2: 'x' and 'y' labels will be truncated if the table is not going to
   fit to the screen, according to the value of \code{getOption("width")}.
@@ -85,35 +81,32 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
 
   prop.tbl:     An n by m matrix containing cell table proportions.
 
-  chisq:        Results from the Chi-Square test. A list with class
-  'htest'. See \code{\link[stats]{chisq.test}} for details.
+  chisq:        Results from the Chi-Square test. A list with class 'htest'.
+  See \code{\link[stats]{chisq.test}} for details.
 
-  chisq.corr:   Results from the corrected Chi-Square test. A list with
-  class 'htest'. See \code{\link[stats]{chisq.test}} for details. ONLY
-  included in the case of a 2 x 2 table.
+  chisq.corr:   Results from the corrected Chi-Square test. A list with class
+  'htest'. See \code{\link[stats]{chisq.test}} for details. ONLY included in
+  the case of a 2 x 2 table.
 
-  fisher.ts:    Results from the two-sided Fisher Exact test. A list
-  with class 'htest'. See \code{\link[stats]{fisher.test}} for details. ONLY
+  fisher.ts:    Results from the two-sided Fisher Exact test. A list with
+  class 'htest'. See \code{\link[stats]{fisher.test}} for details. ONLY
   included if 'fisher' = TRUE.
 
-  fisher.lt:    Results from the Fisher Exact test with HA = "less". A
-  list with class 'htest'. See \code{\link[stats]{fisher.test}} for details.
-  ONLY included if 'fisher' = TRUE and in the case of a
-  2 x 2 table.
+  fisher.lt:    Results from the Fisher Exact test with HA = "less". A list
+  with class 'htest'. See \code{\link[stats]{fisher.test}} for details. ONLY
+  included if 'fisher' = TRUE and in the case of a 2 x 2 table.
 
-  fisher.gt:    Results from the Fisher Exact test with HA = "greater".
-  A list with class 'htest'. See \code{\link[stats]{fisher.test}} for details.
-  ONLY included if 'fisher' = TRUE and in the case of a
-  2 x 2 table.
+  fisher.gt:    Results from the Fisher Exact test with HA = "greater". A list
+  with class 'htest'. See \code{\link[stats]{fisher.test}} for details. ONLY
+  included if 'fisher' = TRUE and in the case of a 2 x 2 table.
 
-  mcnemar:      Results from the McNemar test. A list with class
-  'htest'. See \code{\link[stats]{mcnemar.test}} for details. ONLY included
-  if 'mcnemar' = TRUE.
+  mcnemar:      Results from the McNemar test. A list with class 'htest'. See
+  \code{\link[stats]{mcnemar.test}} for details. ONLY included if 'mcnemar' =
+  TRUE.
 
-  mcnemar.corr: Results from the corrected McNemar test. A list with
-  class 'htest'. See \code{\link[stats]{mcnemar.test}} for details. ONLY
-  included if 'mcnemar' = TRUE and in the case of a
-  2 x 2 table.
+  mcnemar.corr: Results from the corrected McNemar test. A list with class
+  'htest'. See \code{\link[stats]{mcnemar.test}} for details. ONLY included if
+  'mcnemar' = TRUE and in the case of a 2 x 2 table.
 
   resid/sresid/asresid: Pearson Residuals (from chi-square tests).
 
@@ -125,9 +118,9 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
   27, 2002. SPSS format modifications added by Nitin Jain based upon code
   provided by Dirk Enzmann).}
 
-\seealso{\code{\link{forODFTable}}, \code{\link[base]{table}},
-  \code{\link[base]{prop.table}}, \code{\link[stats]{xtabs}},
-  \code{\link{crosstab}}.}
+\seealso{\code{\link{plot.CrossTable}}, \code{\link{forODFTable}},
+  \code{\link[base]{table}}, \code{\link[base]{prop.table}},
+  \code{\link[stats]{xtabs}}, \code{\link{crosstab}}.}
 
 \examples{
 # Simple cross tabulation of education versus prior induced
