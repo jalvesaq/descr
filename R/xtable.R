@@ -8,10 +8,10 @@ xtable.CrossTable <- function(x, caption = NULL, label = NULL, align = NULL, dig
 
     if(multirow){
         colname1 <- paste("\\multirow{2}{*}{",
-                          gsub("\\$", "\\\\$", attr(x, "xlab")),
+                          gsub("\\$", "\\\\$", x$RowData),
                           "} & \\multicolumn{",
                           length(x$t[1,]), "}{c}{",
-                          gsub("\\$", "\\\\$", attr(x, "ylab")),
+                          gsub("\\$", "\\\\$", x$ColData),
                           "} & \\multirow{2}{*}{",
                           gettext("Total", domain = "R-descr"), "}\\\\\n \\cline{2-",
                           length(x$t[1,])+1,"}", sep = "")

@@ -4,14 +4,10 @@ crosstab <- function(x, y, weight = NULL, digits = 3, max.width = NA,
                      prop.t = FALSE, prop.chisq = FALSE, chisq = FALSE,
                      fisher = FALSE, mcnemar = FALSE, resid = FALSE,
                      sresid = FALSE, asresid = FALSE, missing.include = FALSE,
-                     format = "SPSS", dnn = NULL, user.missing.x,
-                     user.missing.y, cell.layout = TRUE,
-                     plot = getOption("descr.plot"),
-                     xlab = deparse(substitute(x)),
-                     ylab = deparse(substitute(y)), main = "", ...)
+                     format = "SPSS", cell.layout = TRUE, dnn = NULL,
+                     xlab = NULL, ylab = NULL, main = "", user.missing.x,
+                     user.missing.y, plot = getOption("descr.plot"), ...)
 {
-    xlab <- xlab
-    ylab <- ylab
     dimnameX <- deparse(substitute(x))
     dimnameY <- deparse(substitute(y))
 
@@ -43,7 +39,10 @@ crosstab <- function(x, y, weight = NULL, digits = 3, max.width = NA,
         tab <- table(x, y)
     else
         tab <- round(xtabs(weight ~ x + y))
-    names(dimnames(tab)) <- c(dimnameX, dimnameY)
+    if(is.null(dnn))
+        names(dimnames(tab)) <- c(dimnameX, dimnameY)
+    else
+        names(dimnames(tab)) <- dnn
 
     crosstb <- CrossTable(tab, digits = digits, max.width = max.width,
                       expected = expected, prop.r = prop.r, prop.c = prop.c,

@@ -14,7 +14,7 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
            mcnemar = FALSE, resid = FALSE, sresid = FALSE,
            asresid = FALSE, missing.include = FALSE,
            format = c("SAS","SPSS"), dnn = NULL,
-           cell.layout = TRUE, xlab, ylab, \dots)
+           cell.layout = TRUE, xlab = NULL, ylab = NULL, \dots)
 }
 \arguments{
   \item{x}{A vector or a matrix. If y is specified, x must be a vector.}
@@ -46,13 +46,15 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
   \item{missing.include}{If \code{TRUE}, then remove any unused factor levels.}
   \item{format}{Either SAS (default) or SPSS, depending on the type of
     output desired.}
-  \item{dnn}{the names to be given to the dimensions in the result (the dimnames
+  \item{dnn}{The names to be given to the dimensions in the result (the dimnames
     names).}
   \item{cell.layout}{If \code{TRUE}, print the cell layout.}
   \item{xlab}{A title for the x axis when plotting the CrossTable object (see
-    \code{\link[graphics]{title}}).}
+    \code{\link[graphics]{title}}). If missing, \code{dnn[1]} is used if not
+    \code{NULL}.}
   \item{ylab}{A title for the y axis when plotting the CrossTable object (see
-    \code{\link[graphics]{title}}).}
+    \code{\link[graphics]{title}}). If missing, \code{dnn[2]} is used if not
+    \code{NULL}.}
   \item{\dots}{Optional arguments passed to \code{\link[stats]{chisq.test}}.}
 }
 \details{
@@ -126,6 +128,8 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
 # Simple cross tabulation of education versus prior induced
 # abortions using infertility data
 data(warpbreaks, package = "datasets")
-CrossTable(warpbreaks$wool, warpbreaks$tension,
-           dnn = c("Wool", "Tension"))
+ct <- CrossTable(warpbreaks$wool, warpbreaks$tension,
+                 dnn = c("Wool", "Tension"))
+plot(ct)
+print(ct)
 }

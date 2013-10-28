@@ -1,4 +1,4 @@
-Version 1.0.2 (2013-10-14)
+Version 1.0.2 (2013-10-28)
 --------------------------
 
   Bug fixes:
@@ -13,6 +13,9 @@ Version 1.0.2 (2013-10-14)
     - Make CrossTable() to print residuals even if format="SAS".
 
     - Make CrossTable() to print only what is set to TRUE.
+
+    - CrossTable() doesn't output chisq.test() warnings if chisq = FALSE and
+      prop.chisq = FALSE.
 
     - News functions: data.frame2txt() and labels2R().
 

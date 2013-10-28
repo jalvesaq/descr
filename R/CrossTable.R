@@ -22,19 +22,9 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
     prop.r = TRUE, prop.c = TRUE, prop.t = TRUE, prop.chisq = TRUE,
     chisq = FALSE, fisher = FALSE, mcnemar = FALSE, resid = FALSE,
     sresid = FALSE, asresid = FALSE, missing.include = FALSE,
-    format = c("SAS", "SPSS"), dnn = NULL, cell.layout = TRUE, xlab, ylab, ...)
+    format = c("SAS", "SPSS"), dnn = NULL, cell.layout = TRUE,
+    xlab = NULL, ylab = NULL, ...)
 {
-    if(missing(xlab))
-        xlab = deparse(substitute(x))
-    if(missing(ylab)){
-        if(missing(y)){
-            xlab = "x"
-            ylab = "y"
-        } else {
-            ylab = deparse(substitute(y))
-        }
-    }
-
     format = match.arg(format)
 
     RowData <- deparse(substitute(x))
@@ -92,9 +82,7 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
 	}
 	else
 	    stop("x must be either a vector or a 2 dimensional matrix, if y is not given")
-    }
-    else
-    {
+    } else {
 	if(length(x) != length(y))
 	    stop("x and y must have the same length")
 
@@ -102,9 +90,7 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
 	{
 	    x <- factor(x, exclude=c())
 	    y <- factor(y, exclude=c())
-	}
-	else
-	{
+	} else {
 	    ## Remove unused factor levels from vectors
 	    x <- factor(x)
 	    y <- factor(y)
@@ -115,18 +101,32 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
 
     ## Create Titles for Table From Vector Names
     ## At least 2 x 2 table only (for now)
-    if (all(dim(t) >= 2))
-    {
-	if (!is.null(dnn))
-	{
+    if (all(dim(t) >= 2)) {
+	if (!is.null(dnn)) {
 	    if (length(dnn) != 2)
 		stop("dnn must have length of 2, one element for each table dimension")
-	    else
-	    {
+	    else {
 		RowData <- dnn[1]
 		ColData <- dnn[2]
 	    }
 	}
+    }
+
+    if(is.null(xlab)){
+        if(is.null(dnn))
+            xlab = deparse(substitute(x))
+        else
+            xlab = dnn[1]
+    }
+    if(is.null(ylab)){
+        if(is.null(dnn)){
+            if(missing(y))
+                ylab = "y"
+            else
+                ylab = deparse(substitute(y))
+        } else {
+            ylab = dnn[2]
+        }
     }
 
     ## if t is not at least a 2 x 2, do not do stats
@@ -166,9 +166,16 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
 
     ## Perform Chi-Square Tests
     if (expected || chisq || prop.chisq || resid || sresid || asresid) {
+        if(!chisq && !prop.chisq){
+            wv <- getOption("warn")
+            options(warn = -1)
+        }
 	CST <- chisq.test(t, correct = FALSE, ...)
 	if (all(dim(t) == 2))
 	    CSTc <- chisq.test(t, correct = TRUE, ...)
+        if(!chisq && !prop.chisq){
+            options(warn = wv)
+        }
     }
 
     if (asresid & !vector.x)

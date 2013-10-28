@@ -6,16 +6,13 @@
   mosaic plot and making it easier to do a weighted cross-tabulation.
 }
 \usage{
-crosstab(x, y, weight = NULL, digits = 3, max.width = NA,
-         expected = FALSE, prop.r = FALSE, prop.c = FALSE,
-         prop.t = FALSE, prop.chisq = FALSE, chisq = FALSE,
-         fisher = FALSE, mcnemar = FALSE, resid = FALSE,
-         sresid = FALSE, asresid = FALSE,
-         missing.include = FALSE, format = "SPSS",
-         dnn = NULL, user.missing.x, user.missing.y,
-         cell.layout = TRUE, plot = getOption("descr.plot"),
-         xlab = deparse(substitute(x)),
-         ylab = deparse(substitute(y)), main = "", \dots) 
+crosstab(x, y, weight = NULL, digits = 3, max.width = NA, expected = FALSE,
+         prop.r = FALSE, prop.c = FALSE, prop.t = FALSE, prop.chisq = FALSE,
+         chisq = FALSE, fisher = FALSE, mcnemar = FALSE, resid = FALSE,
+         sresid = FALSE, asresid = FALSE, missing.include = FALSE,
+         format = "SPSS", cell.layout = TRUE, dnn = NULL, xlab = NULL,
+         ylab = NULL, main = "", user.missing.x, user.missing.y,
+         plot = getOption("descr.plot"), \dots)
 }
 
 \arguments{
@@ -36,8 +33,12 @@ crosstab(x, y, weight = NULL, digits = 3, max.width = NA,
   \item{asresid}{See \code{\link{CrossTable}}.}
   \item{missing.include}{See \code{\link{CrossTable}}.}
   \item{format}{See \code{\link{CrossTable}}.}
-  \item{dnn}{See \code{\link{CrossTable}}.}
   \item{cell.layout}{See \code{\link{CrossTable}}.}
+  \item{dnn}{See \code{\link{CrossTable}}.}
+  \item{xlab}{See \code{\link{CrossTable}}.}
+  \item{ylab}{See \code{\link{CrossTable}}.}
+  \item{main}{An overall title for the plot (see
+    \code{\link[graphics]{title}}).}
   \item{user.missing.x}{An optional character vector with the levels of
     \code{x} that should be treated as missing values.}
   \item{user.missing.y}{An optional character vector with the levels of
@@ -48,10 +49,6 @@ crosstab(x, y, weight = NULL, digits = 3, max.width = NA,
     \code{options(descr.plot = FALSE)}
     
     in your \file{.Rprofile} to change the default function behavior.}
-  \item{main}{An overall title for the plot (see
-    \code{\link[graphics]{title}}).}
-  \item{xlab}{A title for the x axis (see \code{\link[graphics]{title}}).}
-  \item{ylab}{A title for the y axis (see \code{\link[graphics]{title}}).}
   \item{\dots}{Further arguments to be passed to
     \code{\link[graphics]{mosaicplot}}.}
 }
@@ -81,8 +78,9 @@ attr(educ, "label") <- "Education level"
 attr(income, "label") <- "Income level"
 w <- sample(c(10, 15, 19), 200, replace = TRUE)
 
-crosstab(income, educ, ylab = "Education", xlab = "Income")
-ct <- crosstab(income, educ, w, expected = TRUE, plot = FALSE)
+crosstab(income, educ, xlab = "Income", ylab = "Education")
+ct <- crosstab(income, educ, w, dnn = c("Income", "Education"),
+               expected = TRUE, plot = FALSE)
 ct
 plot(ct, inv.y = TRUE)
 \dontrun{
