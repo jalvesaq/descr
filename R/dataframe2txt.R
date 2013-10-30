@@ -2,7 +2,7 @@
 data.frame2txt <- function(x, datafile = "x.txt",
                            r.codefile = "x.R",
                            sps.codefile = "x.sps",
-                           df.name = deparse(substitute(x)),
+                           df.name = "x",
                            user.missing){
   x.names <- names(x)
 
