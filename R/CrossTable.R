@@ -33,6 +33,23 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
     else
 	ColData <- deparse(substitute(y))
 
+    if(is.null(xlab)){
+        if(is.null(dnn))
+            xlab = deparse(substitute(x))
+        else
+            xlab = dnn[1]
+    }
+    if(is.null(ylab)){
+        if(is.null(dnn)){
+            if(missing(y))
+                ylab = "y"
+            else
+                ylab = deparse(substitute(y))
+        } else {
+            ylab = dnn[2]
+        }
+    }
+
     ## Ensure that max.width >= 1
     if (!is.na(max.width) && max.width < 1)
 	stop("max.width must be >= 1")
@@ -110,23 +127,6 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
 		ColData <- dnn[2]
 	    }
 	}
-    }
-
-    if(is.null(xlab)){
-        if(is.null(dnn))
-            xlab = deparse(substitute(x))
-        else
-            xlab = dnn[1]
-    }
-    if(is.null(ylab)){
-        if(is.null(dnn)){
-            if(missing(y))
-                ylab = "y"
-            else
-                ylab = deparse(substitute(y))
-        } else {
-            ylab = dnn[2]
-        }
     }
 
     ## if t is not at least a 2 x 2, do not do stats
