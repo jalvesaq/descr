@@ -1,7 +1,7 @@
 \encoding{UTF-8}
 \name{LogRegR2}
 \alias{LogRegR2}
-\title{Pseudo R² of logistic regression}
+\title{Pseudo R2 of logistic regression}
 \description{
   The function calculates multiple R² analogues (pseudo R²) of logistic
   regression.
