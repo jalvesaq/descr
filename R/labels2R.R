@@ -61,7 +61,7 @@ labels2R <- function(lfile, rfile, dfname = "b")
                     sep = "", file = outfile, append = TRUE)
             cat("\n", file = outfile, append = TRUE)
         }
-        if(lnum < nlines){
+        if(lnum <= nlines){
             lnum <- lnum + 1
             cline <- input[lnum]
         }
