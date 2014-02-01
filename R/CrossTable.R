@@ -35,18 +35,18 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
 
     if(is.null(xlab)){
         if(is.null(dnn))
-            xlab = deparse(substitute(x))
+            xlab <- deparse(substitute(x))
         else
-            xlab = dnn[1]
+            xlab <- dnn[1]
     }
     if(is.null(ylab)){
         if(is.null(dnn)){
             if(missing(y))
-                ylab = "y"
+                ylab <- "y"
             else
-                ylab = deparse(substitute(y))
+                ylab <- deparse(substitute(y))
         } else {
-            ylab = dnn[2]
+            ylab <- dnn[2]
         }
     }
 

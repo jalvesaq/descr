@@ -8,8 +8,8 @@ crosstab <- function(x, y, weight = NULL, digits = 3, max.width = NA,
                      xlab = NULL, ylab = NULL, main = "", user.missing.x,
                      user.missing.y, plot = getOption("descr.plot"), ...)
 {
-    dimnameX <- deparse(substitute(x))
-    dimnameY <- deparse(substitute(y))
+    if(is.null(dnn))
+        dnn <- c(deparse(substitute(x)), deparse(substitute(y)))
 
     if(!missing(user.missing.x)){
         user.missing.x <- paste("^", user.missing.x, "$", sep = "")
@@ -39,10 +39,7 @@ crosstab <- function(x, y, weight = NULL, digits = 3, max.width = NA,
         tab <- table(x, y)
     else
         tab <- round(xtabs(weight ~ x + y))
-    if(is.null(dnn))
-        names(dimnames(tab)) <- c(dimnameX, dimnameY)
-    else
-        names(dimnames(tab)) <- dnn
+    names(dimnames(tab)) <- dnn
 
     crosstb <- CrossTable(tab, digits = digits, max.width = max.width,
                       expected = expected, prop.r = prop.r, prop.c = prop.c,
