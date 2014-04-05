@@ -62,7 +62,7 @@ xtable.CrossTable <- function(x, caption = NULL, label = NULL, align = NULL, dig
     }
 
     if(x$prop.chisq){
-        xx <- ((x$chisq$expected - x$t) ^ 2) / x$chisq$expected
+        xx <- ((x$CST$expected - x$t) ^ 2) / x$CST$expected
         xx <- format(round(xx, digits), trim = TRUE, ...)
         nt <- appendlines(nt, xx)
     }
