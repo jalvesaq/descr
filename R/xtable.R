@@ -95,7 +95,7 @@ xtable.CrossTable <- function(x, caption = NULL, label = NULL, align = NULL, dig
     }
 
     if(!is.na(x$sresid) && x$sresid == TRUE && x$expected == TRUE){
-        xx <- x$chisq$residual
+        xx <- x$CST$residual
         xx <- format(round(xx, digits), trim = TRUE, ...)
         nt <- appendlines(nt, xx)
     }
