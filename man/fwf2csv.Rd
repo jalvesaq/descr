@@ -26,11 +26,17 @@ fwf2csv(fwffile, csvfile, names, begin, end,
 }
 
 \details{
+
   The return value is NULL, but \code{cvsfile} is created if the function is
   successful. The file is a text table with fields separated by tabular
-  characters without quotes around the strings. This function is useful if you
-  have a very big fixed width formated file to read and \link[utils]{read.fwf}
-  would be too slow.
+  characters without quotes around the strings.
+  
+  This function is useful if you have a very big fixed width formated file to
+  read and \link[utils]{read.fwf} would be too slow. The C function that does
+  the real job allocates a buffer of 32765 bytes to read the lines of the
+  fixed width formated file, but it will allocate a larger buffer if there is
+  at least one column to be read near the end of the line.
+
 }
 
 \seealso{For an efficient way of reading a csv file, see the function

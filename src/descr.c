@@ -42,6 +42,10 @@ void realfwf2csv(char **fwffile, char **csvfile, char **names, int *begin,
     min = max - 3;
     maxget = max * 2;
 
+    /* The last column to be read may be far to the last column in the file */
+    if(maxget < 32765)
+        maxget = 32765;
+
     value = (char*)malloc((maxvlen + 3) * sizeof(char));
     if(value == NULL){
         REprintf(_("Error: could not allocate memory (%d bytes)\n"), maxvlen + 3 *
