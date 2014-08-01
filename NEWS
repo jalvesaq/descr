@@ -1,3 +1,14 @@
+Version 1.0.3 (2014-08-01)
+--------------------------
+
+  Bug fixes:
+
+    - R/labels2R.R: Avoid infinite loop.
+
+    - R/xtable.R: Avoid errors when either sresid or prop.chisq are TRUE.
+
+    - src/descr.c: Read up to 32765 characters from input lines.
+
 Version 1.0.2 (2013-11-01)
 --------------------------
 
