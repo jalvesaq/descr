@@ -7,12 +7,14 @@
   variables.
 }
 \usage{
-labels2R(lfile, rfile, dfname = "b")
+labels2R(lfile, rfile, dfname = "b", echo = FALSE)
 }
 \arguments{
   \item{lfile}{The path to the text file to be converted.}
   \item{rfile}{The path to the file to be created.}
   \item{dfname}{Name of data.frame where the variables are.}
+  \item{echo}{If \code{TRUE}, then lines of lfile are printed in the R Console
+    while the file is parsed. This may be useful debugging.}
 }
 
 \value{
