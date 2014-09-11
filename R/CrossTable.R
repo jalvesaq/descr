@@ -1,3 +1,4 @@
+
 # These functions were developed from the function CrossTable of the package
 # gmodels.  The original function had the following comments:
 #
@@ -22,8 +23,8 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
     prop.r = TRUE, prop.c = TRUE, prop.t = TRUE, prop.chisq = TRUE,
     chisq = FALSE, fisher = FALSE, mcnemar = FALSE, resid = FALSE,
     sresid = FALSE, asresid = FALSE, missing.include = FALSE,
-    format = c("SAS", "SPSS"), dnn = NULL, cell.layout = TRUE,
-    xlab = NULL, ylab = NULL, ...)
+    drop.levels = TRUE, format = c("SAS", "SPSS"), dnn = NULL,
+    cell.layout = TRUE, xlab = NULL, ylab = NULL, ...)
 {
     format = match.arg(format)
 
@@ -61,13 +62,11 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
 	## is x a vector?
 	if (is.null(dim(x)))
 	{
-	    if (missing.include)
-		x <- factor(x, exclude=NULL)
-	    else
-		## Remove any unused factor levels
-		x <- factor(x)
-
-	    t <- t(as.matrix(table(x)))
+            if (missing.include)
+                x <- no.drop.levels(x)
+            if (drop.levels)
+                x <- factor(x)
+            t <- t(as.matrix(table(x)))
 	    vector.x <- TRUE
 	}
 	## is x a matrix?
@@ -100,18 +99,18 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
 	else
 	    stop("x must be either a vector or a 2 dimensional matrix, if y is not given")
     } else {
+        if(missing.include){
+            x <- no.drop.levels(x)
+            y <- no.drop.levels(y)
+        } 
+        if(drop.levels){
+            x <- factor(x)
+            y <- factor(y)
+        }
+
 	if(length(x) != length(y))
 	    stop("x and y must have the same length")
 
-	if (missing.include)
-	{
-	    x <- factor(x, exclude=c())
-	    y <- factor(y, exclude=c())
-	} else {
-	    ## Remove unused factor levels from vectors
-	    x <- factor(x)
-	    y <- factor(y)
-	}
 	## Generate table
 	t <- table(x, y)
     }
@@ -207,8 +206,7 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
                 RowData = RowData, ColData = ColData, digits = digits,
                 max.width = max.width, vector.x = vector.x,
                 expected = expected, prop.chisq = prop.chisq, resid = resid,
-                sresid = sresid, asresid = asresid,
-                missing.include = missing.include, format = format,
+                sresid = sresid, asresid = asresid, format = format,
                 cell.layout = cell.layout)
 
     # Attributes for plotting
@@ -254,7 +252,6 @@ print.CrossTable <- function(x, ...)
     sresid <- x$sresid
     asresid <- x$asresid
     mcnemar <- x$print.mcnemar
-    missing.include <- x$missing.include
     format <- x$format
     cell.layout <- x$cell.layout
     outDec <- getOption("OutDec")

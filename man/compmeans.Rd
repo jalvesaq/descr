@@ -4,7 +4,8 @@
 \description{Calculates the means of a numerical vector according to a factor.}
 \usage{
 compmeans(x, f, w, sort = FALSE, maxlevels = 60,
-          user.missing, plot = getOption("descr.plot"),
+          user.missing, missing.include = FALSE,
+          plot = getOption("descr.plot"),
           relative.widths = TRUE, col = "lightgray",
           warn = getOption("descr.warn"), \dots)
 }
@@ -17,6 +18,10 @@ compmeans(x, f, w, sort = FALSE, maxlevels = 60,
     should have.}
   \item{user.missing}{Character vector, indicating what levels of \code{f}
     must be treated as missing values.}
+  \item{missing.include}{If \code{TRUE}, then NA values, if present in
+    \code{f}, are included as level \code{"NA"}. You can change the new level
+    label by setting the value of descr.na.replacement option. Example:
+    \code{options(descr.na.replacement = "Missing")}.}
   \item{plot}{Logical: if \code{TRUE} (default), a boxplot is produced.
     You may put
 

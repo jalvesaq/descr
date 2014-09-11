@@ -10,8 +10,9 @@ crosstab(x, y, weight = NULL, digits = 3, max.width = NA, expected = FALSE,
          prop.r = FALSE, prop.c = FALSE, prop.t = FALSE, prop.chisq = FALSE,
          chisq = FALSE, fisher = FALSE, mcnemar = FALSE, resid = FALSE,
          sresid = FALSE, asresid = FALSE, missing.include = FALSE,
-         format = "SPSS", cell.layout = TRUE, dnn = NULL, xlab = NULL,
-         ylab = NULL, main = "", user.missing.x, user.missing.y,
+         drop.levels = TRUE, format = "SPSS", cell.layout = TRUE,
+         dnn = NULL, xlab = NULL, ylab = NULL, main = "",
+         user.missing.x, user.missing.y,
          plot = getOption("descr.plot"), \dots)
 }
 
@@ -32,6 +33,7 @@ crosstab(x, y, weight = NULL, digits = 3, max.width = NA, expected = FALSE,
   \item{sresid}{See \code{\link{CrossTable}}.}
   \item{asresid}{See \code{\link{CrossTable}}.}
   \item{missing.include}{See \code{\link{CrossTable}}.}
+  \item{drop.levels}{See \code{\link{CrossTable}}.}
   \item{format}{See \code{\link{CrossTable}}.}
   \item{cell.layout}{See \code{\link{CrossTable}}.}
   \item{dnn}{See \code{\link{CrossTable}}.}

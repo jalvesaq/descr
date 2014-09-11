@@ -13,7 +13,7 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
            prop.chisq = TRUE, chisq = FALSE, fisher = FALSE,
            mcnemar = FALSE, resid = FALSE, sresid = FALSE,
            asresid = FALSE, missing.include = FALSE,
-           format = c("SAS","SPSS"), dnn = NULL,
+           drop.levels = TRUE, format = c("SAS","SPSS"), dnn = NULL,
            cell.layout = TRUE, xlab = NULL, ylab = NULL, \dots)
 }
 \arguments{
@@ -43,7 +43,11 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
   \item{sresid}{If \code{TRUE},  standardized residual will be included.}
   \item{asresid}{If \code{TRUE}, adjusted standardized residual will be
     included.}
-  \item{missing.include}{If \code{TRUE}, then remove any unused factor levels.}
+  \item{missing.include}{If \code{TRUE}, then NA values, if present, are
+    included as level \code{"NA"} of both x and y. You can change the new
+    level label by setting the value of descr.na.replacement option. Example:
+    \code{options(descr.na.replacement = "Missing")}.}
+  \item{drop.levels}{If \code{TRUE}, then remove any unused factor levels.}
   \item{format}{Either SAS (default) or SPSS, depending on the type of
     output desired.}
   \item{dnn}{The names to be given to the dimensions in the result (the dimnames

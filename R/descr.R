@@ -6,6 +6,8 @@
         options(descr.plot = TRUE)
     if(is.null(getOption("descr.warn")))
         options(descr.warn = TRUE)
+    if(is.null(getOption("descr.na.replacement")))
+        options(descr.na.replacement = "NA")
 
 }
 
@@ -108,6 +110,19 @@ LogRegR2 <- function(model)
 
     x <- list('Chi2'=Chi2,'df'=Df,'p'=p,'RL2'=RL2,'CoxR2'=Cox,'NagelkerkeR2'=Nag)
     class(x) <- "LogRegR2"
+    x
+}
+
+no.drop.levels <- function(x)
+{
+    if(sum(is.na(x)) > 0){
+        nl <- length(levels(x)) + 1
+        lv <- c(levels(x), options("descr.na.replacement"))
+        io <- is.ordered(x)
+        x <- as.numeric(x)
+        x[is.na(x)] <- nl
+        x <- factor(x, levels = 1:nl, labels = lv, ordered = io)
+    }
     x
 }
 

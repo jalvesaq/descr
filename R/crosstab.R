@@ -4,9 +4,10 @@ crosstab <- function(x, y, weight = NULL, digits = 3, max.width = NA,
                      prop.t = FALSE, prop.chisq = FALSE, chisq = FALSE,
                      fisher = FALSE, mcnemar = FALSE, resid = FALSE,
                      sresid = FALSE, asresid = FALSE, missing.include = FALSE,
-                     format = "SPSS", cell.layout = TRUE, dnn = NULL,
-                     xlab = NULL, ylab = NULL, main = "", user.missing.x,
-                     user.missing.y, plot = getOption("descr.plot"), ...)
+                     drop.levels = TRUE, format = "SPSS", cell.layout = TRUE,
+                     dnn = NULL, xlab = NULL, ylab = NULL, main = "",
+                     user.missing.x, user.missing.y,
+                     plot = getOption("descr.plot"), ...)
 {
     if(is.null(dnn))
         dnn <- c(deparse(substitute(x)), deparse(substitute(y)))
@@ -35,6 +36,16 @@ crosstab <- function(x, y, weight = NULL, digits = 3, max.width = NA,
         }
         y <- factor(y)
     }
+    if(missing.include){
+        x <- no.drop.levels(x)
+        if(!missing(y))
+            y <- no.drop.levels(y)
+    } 
+    if(drop.levels){
+        x <- factor(x)
+        if(!missing(y))
+            y <- factor(y)
+    }
     if (is.null(weight)) 
         tab <- table(x, y)
     else
@@ -46,7 +57,8 @@ crosstab <- function(x, y, weight = NULL, digits = 3, max.width = NA,
                       prop.t = prop.t, prop.chisq = prop.chisq, chisq = chisq,
                       fisher = fisher, mcnemar = mcnemar, resid = resid,
                       sresid = sresid, asresid = asresid,
-                      missing.include = missing.include, format = format,
+                      missing.include = missing.include,
+                      drop.levels = drop.levels, format = format,
                       dnn = dnn, xlab = xlab, ylab = ylab)
 
     if(plot == TRUE)

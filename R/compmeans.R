@@ -7,7 +7,8 @@ wtd.sd <- function(x, weights)
 
 
 compmeans <- function(x, f, w, sort = FALSE, maxlevels = 60,
-                      user.missing, plot = getOption("descr.plot"),
+                      user.missing, missing.include = FALSE,
+                      plot = getOption("descr.plot"),
                       relative.widths = TRUE, col = "lightgray",
                       warn = getOption("descr.warn"), ...)
 {
@@ -56,6 +57,8 @@ compmeans <- function(x, f, w, sort = FALSE, maxlevels = 60,
         }
         f <- factor(f)
     }
+    if(missing.include)
+        f <- no.drop.levels(f)
 
     if(is.numeric(x)){
         class(x) <- "numeric"
