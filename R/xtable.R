@@ -71,10 +71,8 @@ xtable.CrossTable <- function(x, caption = NULL, label = NULL, align = NULL, dig
     }
 
     if(!is.na(x$prop.row[1])){
-        xx <- format(round(x$prop.row * hdd, digits), trim = TRUE, ...)
-        xxt <- apply(x$t, 1, sum) / x$gt
-        xxt <- format(round(xxt * hdd, digits), trim = TRUE, ...)
-        xx <- cbind(xx, xxt)
+        xx <- cbind(x$prop.row, x$rs / x$gt)
+        xx <- format(round(xx * hdd, digits), trim = TRUE, ...)
         if(hdd == 100 && (multirow || hline))
             xx <- matrix(paste(xx, "\\%", sep = ""), nrow = nr, ncol = nc + 1)
         nt <- appendlines(nt, xx, TRUE)
