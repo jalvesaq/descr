@@ -88,7 +88,12 @@ plot(ct, inv.y = TRUE)
 \dontrun{
 library(xtable)
 print(xtable(ct))
+
+# Add to the preamble of your Rnoweb document:
+# \usepackage{booktabs}
+# \usepackage{multirow}
 print(xtable(ct, decimal.mark = ",", multirow = TRUE, hline = TRUE),
-      sanitize.text.function = function(x) x, include.rownames = FALSE)
+      booktabs = TRUE, include.rownames = FALSE,
+      sanitize.text.function = function(x) x)
 }
 }
