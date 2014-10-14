@@ -41,9 +41,12 @@ xtable.CrossTable <- function(x, caption = NULL, label = NULL, align = NULL, dig
         nt <- nt[idx, ]
     }
 
-    appendlines <- function(nt, xx)
+    appendlines <- function(nt, xx, hasttl = FALSE)
     {
-        xx <- cbind(rep("", nr), xx, rep("", nr))
+        if(hasttl)
+            xx <- cbind(rep("", nr), xx)
+        else
+            xx <- cbind(rep("", nr), xx, rep("", nr))
         n <- dim(nt)[1] / nr
         nt <- rbind(nt, xx)
         idx <- integer()
@@ -69,9 +72,12 @@ xtable.CrossTable <- function(x, caption = NULL, label = NULL, align = NULL, dig
 
     if(!is.na(x$prop.row[1])){
         xx <- format(round(x$prop.row * hdd, digits), trim = TRUE, ...)
+        xxt <- apply(x$t, 1, sum) / x$gt
+        xxt <- format(round(xxt * hdd, digits), trim = TRUE, ...)
+        xx <- cbind(xx, xxt)
         if(hdd == 100 && (multirow || hline))
-            xx <- matrix(paste(xx, "\\%", sep = ""), nrow = nr, ncol = nc)
-        nt <- appendlines(nt, xx)
+            xx <- matrix(paste(xx, "\\%", sep = ""), nrow = nr, ncol = nc + 1)
+        nt <- appendlines(nt, xx, TRUE)
     }
 
     if(!is.na(x$prop.col[1])){
@@ -113,6 +119,10 @@ xtable.CrossTable <- function(x, caption = NULL, label = NULL, align = NULL, dig
         idx <- c(idx[-1], dim(nt)[1] + 1)
 
     nt <- rbind(nt, c(gettext("Total", domain = "R-descr"), x$cs, x$gt))
+
+    if(!is.na(x$prop.col[1]))
+        nt <- rbind(nt, c("", format(round(hdd * x$cs / x$gt, digits), trim = TRUE, ...), ""))
+
     if(hline)
         nt[idx, 1] <- paste("\\hline\n", nt[idx, 1], sep = "")
 
