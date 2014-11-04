@@ -1,3 +1,22 @@
+Version 1.0.4 (2014-11-04)
+--------------------------
+
+  Bug fixes:
+
+    - R/labels2R.R: Accept negative values.
+
+    - R/xtable.R: Add row and column total proportions to xtable (thanks to
+      Johannes Herrmann for reporting the bug).
+
+  Changes:
+
+    - New argument for compmeans: missing.include (thanks to Olivier Armand
+      for reporting the issue that led to this change).
+
+    - New argument for CrossTable: drop.levels.
+
+    - New option: descr.na.replacement.
+
 Version 1.0.3 (2014-08-01)
 --------------------------
 
