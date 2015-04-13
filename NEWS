@@ -1,3 +1,17 @@
+Version 1.1 (2015-04-13)
+
+  Change:
+
+    - The plot.CrossTable() function now plots a mosaic graphic with rows and
+      columns that mirror the output table. The x and y arguments of
+      crosstab() were renamed indep and dep, respectively, to avoid the
+      confusion with what should be xlab and ylab. The arguments
+      user.missing.x and user.missing.y were also renamed.
+
+  Bug fix:
+
+    - Use format.pval() to print p-value in print.CrossTable().
+
 Version 1.0.4 (2014-11-04)
 --------------------------
 

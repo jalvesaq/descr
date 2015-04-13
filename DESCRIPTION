@@ -1,6 +1,6 @@
 Package: descr
-Version: 1.0.4
-Date: 2014-11-04
+Version: 1.1
+Date: 2015-04-13
 Title: Descriptive Statistics
 Author: Jakson Aquino. Includes R source code and/or documentation
         written by Dirk Enzmann, Marc Schwartz, Nitin Jain, and Stefan
@@ -10,11 +10,10 @@ Encoding: UTF-8
 Imports: xtable
 Description: Weighted frequency and contingency tables of categorical
        variables and of the comparison of the mean value of a numerical
-       variable by the levels of a factor. The package includes methods to
-       produce xtable objects of the tables and to plot them. There are also
-       functions to facilitate the character encoding conversion of objects,
-       to quickly convert fixed width files into csv ones, and to export a
-       data.frame to a text file with the necessary R and SPSS codes to reread
-       the data.
+       variable by the levels of a factor, and methods to produce xtable
+       objects of the tables and to plot them. There are also functions to
+       facilitate the character encoding conversion of objects, to quickly
+       convert fixed width files into csv ones, and to export a data.frame to
+       a text file with the necessary R and SPSS codes to reread the data.
 License: GPL (>= 2)
 URL: https://github.com/jalvesaq/descr
