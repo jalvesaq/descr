@@ -1,55 +1,58 @@
 
-crosstab <- function(x, y, weight = NULL, digits = 3, max.width = NA,
+crosstab <- function(dep, indep, weight = NULL, digits = 3, max.width = NA,
                      expected = FALSE, prop.r = FALSE, prop.c = FALSE,
                      prop.t = FALSE, prop.chisq = FALSE, chisq = FALSE,
                      fisher = FALSE, mcnemar = FALSE, resid = FALSE,
                      sresid = FALSE, asresid = FALSE, missing.include = FALSE,
                      drop.levels = TRUE, format = "SPSS", cell.layout = TRUE,
                      dnn = NULL, xlab = NULL, ylab = NULL, main = "",
-                     user.missing.x, user.missing.y,
+                     user.missing.dep, user.missing.indep,
                      plot = getOption("descr.plot"), ...)
 {
-    if(is.null(dnn))
-        dnn <- c(deparse(substitute(x)), deparse(substitute(y)))
+    if(missing(dep))
+        stop("The argument 'dep' (dependent variable) is missing.")
+    if(missing(indep))
+        stop("The 'indep' (independent variable) is missing.")
 
-    if(!missing(user.missing.x)){
-        user.missing.x <- paste("^", user.missing.x, "$", sep = "")
-        xlevels <- levels(x)
-        for(lev in user.missing.x){
-            if(length(grep(lev, xlevels))){
-                idx <- grep(lev, as.character(x)) 
+    if(is.null(dnn))
+        dnn <- c(deparse(substitute(dep)), deparse(substitute(indep)))
+
+    if(!missing(user.missing.indep)){
+        user.missing.indep <- paste("^", user.missing.indep, "$", sep = "")
+        ilevels <- levels(indep)
+        for(lev in user.missing.indep){
+            if(length(grep(lev, ilevels))){
+                idx <- grep(lev, as.character(indep))
                 if(length(idx))
-                    x[idx] <- NA
+                    indep[idx] <- NA
             }
         }
-        x <- factor(x)
+        indep <- factor(indep)
     }
-    if(!missing(user.missing.y)){
-        user.missing.y <- paste("^", user.missing.y, "$", sep = "")
-        ylevels <- levels(y)
-        for(lev in user.missing.y){
-            if(length(grep(lev, ylevels))){
-                idx <- grep(lev, as.character(y)) 
+    if(!missing(user.missing.dep)){
+        user.missing.dep <- paste("^", user.missing.dep, "$", sep = "")
+        dlevels <- levels(dep)
+        for(lev in user.missing.dep){
+            if(length(grep(lev, dlevels))){
+                idx <- grep(lev, as.character(dep))
                 if(length(idx))
-                    y[idx] <- NA
+                    dep[idx] <- NA
             }
         }
-        y <- factor(y)
+        dep <- factor(dep)
     }
     if(missing.include){
-        x <- no.drop.levels(x)
-        if(!missing(y))
-            y <- no.drop.levels(y)
-    } 
-    if(drop.levels){
-        x <- factor(x)
-        if(!missing(y))
-            y <- factor(y)
+        dep <- no.drop.levels(dep)
+        indep <- no.drop.levels(indep)
     }
-    if (is.null(weight)) 
-        tab <- table(x, y)
+    if(drop.levels){
+        dep <- factor(dep)
+        indep <- factor(indep)
+    }
+    if (is.null(weight))
+        tab <- table(dep, indep)
     else
-        tab <- round(xtabs(weight ~ x + y))
+        tab <- round(xtabs(weight ~ dep + indep))
     names(dimnames(tab)) <- dnn
 
     crosstb <- CrossTable(tab, digits = digits, max.width = max.width,
@@ -70,20 +73,20 @@ crosstab <- function(x, y, weight = NULL, digits = 3, max.width = NA,
 
 plot.CrossTable <- function(x, xlab, ylab, main = "", col, inv.x = FALSE, inv.y = FALSE, ...)
 {
-    tabforplot <- x$t
+    tabforplot <- t(x$t)
     if(missing(xlab)){
         lab <- attr(x, "xlab")
-        if(!is.null(lab))
-            xlab <- lab
+        if(is.null(lab))
+            xlab <- x$ColData
         else
-            xlab <- names(dimnames(tabforplot))[1]
+            xlab <- lab
     }
     if(missing(ylab)){
         lab <- attr(x, "ylab")
-        if(!is.null(lab))
-            ylab <- lab
+        if(is.null(lab))
+            ylab <- x$RowData
         else
-            ylab <- names(dimnames(tabforplot))[2]
+            ylab <- lab
     }
     nxlev <- dim(tabforplot)[1]
     nylev <- dim(tabforplot)[2]

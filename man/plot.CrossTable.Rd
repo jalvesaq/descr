@@ -14,7 +14,7 @@
   \item{x}{A object of class CrossTable.}
   \item{xlab}{See \code{\link[graphics]{plot.default}}.}
   \item{ylab}{See \code{\link[graphics]{plot.default}}.}
-  \item{main}{See \code{\link[graphics]{plot.default}}.}
+  \item{main}{See \code{\link[graphics]{plot.default}} and \code{\link[graphics]{title}}.}
   \item{col}{A specification for the default plotting color. (See section
     \sQuote{Color Specification} of \code{\link[graphics]{par}}). If the
     argument is missing, a gray scale is used to make the plot easier to

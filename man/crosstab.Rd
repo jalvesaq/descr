@@ -6,18 +6,19 @@
   mosaic plot and making it easier to do a weighted cross-tabulation.
 }
 \usage{
-crosstab(x, y, weight = NULL, digits = 3, max.width = NA, expected = FALSE,
+crosstab(dep, indep, weight = NULL, digits = 3, max.width = NA, expected = FALSE,
          prop.r = FALSE, prop.c = FALSE, prop.t = FALSE, prop.chisq = FALSE,
          chisq = FALSE, fisher = FALSE, mcnemar = FALSE, resid = FALSE,
          sresid = FALSE, asresid = FALSE, missing.include = FALSE,
          drop.levels = TRUE, format = "SPSS", cell.layout = TRUE,
          dnn = NULL, xlab = NULL, ylab = NULL, main = "",
-         user.missing.x, user.missing.y,
+         user.missing.dep, user.missing.indep,
          plot = getOption("descr.plot"), \dots)
 }
 
 \arguments{
-  \item{x, y}{Vectors in a matrix or a dataframe.}
+  \item{dep, indep}{Vectors in a matrix or a dataframe. \code{dep} should be
+    the dependent variable, and \code{indep} should be the independent one.}
   \item{weight}{An optional vector for a weighted cross tabulation.}
   \item{digits}{See \code{\link{CrossTable}}.}
   \item{max.width}{See \code{\link{CrossTable}}.}
@@ -37,14 +38,14 @@ crosstab(x, y, weight = NULL, digits = 3, max.width = NA, expected = FALSE,
   \item{format}{See \code{\link{CrossTable}}.}
   \item{cell.layout}{See \code{\link{CrossTable}}.}
   \item{dnn}{See \code{\link{CrossTable}}.}
-  \item{xlab}{See \code{\link{CrossTable}}.}
-  \item{ylab}{See \code{\link{CrossTable}}.}
+  \item{xlab}{See \code{\link[graphics]{plot.default}}.}
+  \item{ylab}{See \code{\link[graphics]{plot.default}}.}
   \item{main}{An overall title for the plot (see
-    \code{\link[graphics]{title}}).}
-  \item{user.missing.x}{An optional character vector with the levels of
-    \code{x} that should be treated as missing values.}
-  \item{user.missing.y}{An optional character vector with the levels of
-    \code{y} that should be treated as missing values.}
+    \code{\link[graphics]{plot.default}} and \code{\link[graphics]{title}}).}
+  \item{user.missing.dep}{An optional character vector with the levels of
+    \code{dep} that should be treated as missing values.}
+  \item{user.missing.indep}{An optional character vector with the levels of
+    \code{indep} that should be treated as missing values.}
   \item{plot}{Logical: if \code{TRUE} (default), a mosaic plot is produced.
     You may put
     
