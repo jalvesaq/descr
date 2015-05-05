@@ -17,8 +17,7 @@ xtable.CrossTable <- function(x, caption = NULL, label = NULL, align = NULL, dig
                           length(x$t[1,])+1,"}", sep = "")
         colnames(nt) <- c(colname1, colnames(x$t), " ")
     } else {
-        colname1 <- attr(x, "xlab")
-        colnames(nt) <- c(attr(x, "xlab"), colnames(x$t), gettext("Total", domain = "R-descr"))
+        colnames(nt) <- c(x$RowData, colnames(x$t), gettext("Total", domain = "R-descr"))
     }
 
 
