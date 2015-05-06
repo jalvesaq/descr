@@ -86,7 +86,7 @@ ct <- crosstab(income, educ, w, dnn = c("Income", "Education"),
                expected = TRUE, plot = FALSE)
 ct
 plot(ct, inv.y = TRUE)
-\dontrun{
+
 library(xtable)
 print(xtable(ct))
 
@@ -96,5 +96,4 @@ print(xtable(ct))
 print(xtable(ct, decimal.mark = ",", multirow = TRUE, hline = TRUE),
       booktabs = TRUE, include.rownames = FALSE,
       sanitize.text.function = function(x) x)
-}
 }

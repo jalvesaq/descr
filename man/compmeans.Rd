@@ -58,10 +58,8 @@ compmeans(income, sex, col = "lightgray", ylab = "income", xlab = "sex")
 comp <- compmeans(income, sex, weight, plot = FALSE)
 plot(comp, col = c("pink", "lightblue"), ylab = "income", xlab = "sex")
 
-\dontrun{
 library(xtable)
 # If the decimal separator in your country is a comma:
 # options(OutDec = ",")
 print(xtable(comp, caption = "Income according to sex", label = "tab:incsx"))
-}
 }
