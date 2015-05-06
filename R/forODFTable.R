@@ -23,7 +23,7 @@ forODFTable <- function(x, digits = 1, ...)
         tab <- matrix(tab, nrow = length(x$rs), ncol = length(x$cs))
     }
     if(x$prop.chisq){
-        xx <- ((x$chisq$expected - x$t) ^ 2) / x$chisq$expected
+        xx <- ((x$CST$expected - x$t) ^ 2) / x$CST$expected
         xx <- format(round(xx, digits), trim = TRUE, ...)
         tab <- paste(tab, xx, sep = "<text:line-break/>")
         tab <- matrix(tab, nrow = length(x$rs), ncol = length(x$cs))
@@ -56,7 +56,7 @@ forODFTable <- function(x, digits = 1, ...)
         tab <- matrix(tab, nrow = length(x$rs), ncol = length(x$cs))
     }
     if(!is.na(x$sresid) && x$sresid == TRUE && x$expected == TRUE){
-        xx <- x$chisq$residual
+        xx <- x$CST$residual
         xx <- format(round(xx, digits), trim = TRUE, ...)
         tab <- paste(tab, xx, sep = "<text:line-break/>")
         tab <- matrix(tab, nrow = length(x$rs), ncol = length(x$cs))
