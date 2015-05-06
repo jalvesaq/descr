@@ -1,4 +1,10 @@
+Version 1.1.1 (2015-05-05)
+--------------------------
+
+  - Bug fixes in forODFTable() and xtable.CrossTable().
+
 Version 1.1 (2015-04-13)
+--------------------------
 
   Change:
 
