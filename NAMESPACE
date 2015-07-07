@@ -3,7 +3,14 @@ export(CrossTable, crosstab, LogRegR2, freq, fromUTF8, toUTF8, descr,
 compmeans, histkdnc, fwf2csv, labels2R, file.head, forODFTable,
 data.frame2txt)
 
-importFrom("xtable", xtable)
+importFrom("xtable", "xtable")
+importFrom("stats", "weighted.mean", "xtabs", "chisq.test", "fisher.test",
+           "mcnemar.test", "na.omit", "density", "dnorm", "sd", "pchisq",
+           "quantile")
+importFrom("utils", "write.table")
+importFrom("grDevices", "gray.colors", "grey")
+importFrom("graphics", "hist.default", "hist", "lines", "curve",
+           "mosaicplot", "barplot", "boxplot", "bxp")
 
 S3method(print, CrossTable)
 S3method(print, freqtable)
