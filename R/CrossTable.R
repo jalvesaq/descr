@@ -365,6 +365,10 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
                 sresid = sresid, asresid = asresid, format = format,
                 cell.layout = cell.layout, total.r = total.r, total.c = total.c)
 
+    # Add "t" element to avoid breaking pander package which manipulates the
+    # CrossTable object:
+    res$t <- res$tab
+
     # Attributes for plotting
     attr(res, "xlab") <- xlab
     attr(res, "ylab") <- ylab
