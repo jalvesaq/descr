@@ -81,13 +81,11 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
 
   If both arguments \samp{total.c} and \samp{total.r} are missing, both will
   be \code{TRUE}. If only one of them is missing, the other will have the same
-  value.
+  value of the not missing one.
 }
 \value{
   A list of class \code{CrossTable} containing parameters used by the
   \code{print.CrossTable} method and the following components:
-
-  nt:           A character matrix to be outputed.
 
   tab:          An n by m matrix containing table cell counts.
 
@@ -134,9 +132,10 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
   27, 2002. SPSS format modifications added by Nitin Jain based upon code
   provided by Dirk Enzmann).}
 
-\seealso{\code{\link{plot.CrossTable}}, \code{\link{forODFTable}},
-  \code{\link[base]{table}}, \code{\link[base]{prop.table}},
-  \code{\link[stats]{xtabs}}, \code{\link{crosstab}}.}
+\seealso{\code{\link{crosstab}} (a wrapper to \samp{CrossTable} that makes it
+  easier to do a weighted contingency table), \code{\link{plot.CrossTable}},
+  \code{\link{forODFTable}}, \code{\link[base]{table}},
+  \code{\link[base]{prop.table}}, \code{\link[stats]{xtabs}}.}
 
 \examples{
 # Simple cross tabulation of education versus prior induced
