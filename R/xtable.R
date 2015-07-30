@@ -1,130 +1,60 @@
 
-xtable.CrossTable <- function(x, caption = NULL, label = NULL, align = NULL, digits = 1,
-                              display = NULL, multirow = FALSE, hline = FALSE, ...)
+xtable.CrossTable <- function(x, caption = NULL, label = NULL, align = NULL,
+                              digits = 1, display = NULL, multirow = FALSE,
+                              hline = FALSE, percent, ...)
 {
-    nr <- dim(x$t)[1]
-    nc <- dim(x$t)[2]
-    nt <- cbind(rownames(x$t), x$t, x$rs)
+    nr <- nrow(x$tab)
+    nc <- ncol(x$t)
+    x$digits <- digits
+
+    if(missing(percent)){
+        if(multirow || hline)
+            percent <- TRUE
+        else
+            percent <- FALSE
+    }
+    if(percent){
+        nt <- CreateNewTab(x, prct = TRUE)
+        for(i in 1:nrow(nt))
+            for(j in 1:ncol(nt))
+                nt[i, j] <- sub("%", "\\\\%", nt[i, j])
+    } else {
+        nt <- CreateNewTab(x)
+    }
+
+    # Add rownames as first column
+    nt <- cbind(rownames(nt), nt)
+    colnames(nt)[1] <- x$RowData
+    rownames(nt) <- NULL
+
+    if(x$total.c && !is.na(x$prop.col)[1])
+        nrnt <- nrow(nt) - 2
+    else if(x$total.c)
+        nrnt <- nrow(nt) - 1
+    else
+        nrnt <- nrow(nt)
+
+    n <- nrnt / nr
+    idxm <- seq(1, nrnt, n)
+    idxh <- seq(n+1, nrnt+1, n)
+    idxh <- idxh[idxh < nrow(nt)] # necessary when total.c = FALSE
+
+    if(multirow)
+        nt[idxm, 1] <- paste("\\multirow{", n, "}{*}{", nt[idxm, 1], "}", sep = "")
+    if(hline)
+        nt[idxh, 1] <- paste("\\hline\n", nt[idxh, 1], sep = "")
 
     if(multirow){
-        colname1 <- paste("\\multirow{2}{*}{",
-                          gsub("\\$", "\\\\$", x$RowData),
-                          "} & \\multicolumn{",
-                          length(x$t[1,]), "}{c}{",
-                          gsub("\\$", "\\\\$", x$ColData),
-                          "} & \\multirow{2}{*}{",
-                          gettext("Total", domain = "R-descr"), "}\\\\\n \\cline{2-",
-                          length(x$t[1,])+1,"}", sep = "")
-        colnames(nt) <- c(colname1, colnames(x$t), " ")
-    } else {
-        colnames(nt) <- c(x$RowData, colnames(x$t), gettext("Total", domain = "R-descr"))
-    }
-
-
-    if(x$format == "SPSS")
-        hdd <- 100
-    else
-        hdd <- 1
-
-    if(!is.na(x$expected) && x$expected == TRUE){
-        xex <- outer(x$rs, x$cs, "*")
-        xex <- xex / x$gt
-        if(is.null(digits))
-            digits = 1
-        xx <- format(round(xex, digits), ...)
-        xx <- cbind(rep("", nr), xx, rep("", nr))
-        nt <- rbind(nt, xx)
-        idx <- integer()
-        for(i in 1:nr)
-            idx <- c(idx, i, i + nr)
-        nt <- nt[idx, ]
-    }
-
-    appendlines <- function(nt, xx, hasttl = FALSE)
-    {
-        if(hasttl)
-            xx <- cbind(rep("", nr), xx)
+        col1txt <- paste0("\\multirow{2}{*}{", gsub("\\$", "\\\\$", x$RowData), "} & \\multicolumn{", ncol(x$tab), "}{c}{", gsub("\\$", "\\\\$", x$ColData), "}")
+        if(x$total.r)
+            col1txt <- paste0(col1txt, " & \\multirow{2}{*}{", colnames(nt)[ncol(nt)], "}\\\\\n \\cline{2-", ncol(x$tab)+1,"}", sep = "")
         else
-            xx <- cbind(rep("", nr), xx, rep("", nr))
-        n <- dim(nt)[1] / nr
-        nt <- rbind(nt, xx)
-        idx <- integer()
-        k <- 1
-        l <- nr * n + 1
-        for(i in 1:nr){
-            for(j in 1:n){
-                idx <- c(idx, k)
-                k <- k + 1
-            }
-            idx <- c(idx, l)
-            l <- l + 1
-        }
-        nt <- nt[idx, ]
-        nt
+            col1txt <- paste0(col1txt, " \\\\\n \\cline{2-", ncol(x$tab)+1,"}")
+        colnames(nt)[1] <- col1txt
+        if(x$total.r)
+            colnames(nt)[ncol(nt)] <- " "
     }
 
-    if(x$prop.chisq){
-        xx <- ((x$CST$expected - x$t) ^ 2) / x$CST$expected
-        xx <- format(round(xx, digits), trim = TRUE, ...)
-        nt <- appendlines(nt, xx)
-    }
-
-    if(!is.na(x$prop.row[1])){
-        xx <- cbind(x$prop.row, x$rs / x$gt)
-        xx <- format(round(xx * hdd, digits), trim = TRUE, ...)
-        if(hdd == 100 && (multirow || hline))
-            xx <- matrix(paste(xx, "\\%", sep = ""), nrow = nr, ncol = nc + 1)
-        nt <- appendlines(nt, xx, TRUE)
-    }
-
-    if(!is.na(x$prop.col[1])){
-        xx <- format(round(x$prop.col * hdd, digits), trim = TRUE, ...)
-        if(hdd == 100 && (multirow || hline))
-            xx <- matrix(paste(xx, "\\%", sep = ""), nrow = nr, ncol = nc)
-        nt <- appendlines(nt, xx)
-    }
-
-    if(!is.na(x$prop.tbl[1])){
-        xx <- format(round(x$prop.tbl * hdd, digits), trim = TRUE, ...)
-        if(hdd == 100 && (multirow || hline))
-            xx <- matrix(paste(xx, "\\%", sep = ""), nrow = nr, ncol = nc)
-        nt <- appendlines(nt, xx)
-    }
-
-    if(!is.na(x$resid) && x$resid == TRUE && x$expected == TRUE){
-        xx <- x$t - xex
-        xx <- format(round(xx, digits), trim = TRUE, ...)
-        nt <- appendlines(nt, xx)
-    }
-
-    if(!is.na(x$sresid) && x$sresid == TRUE && x$expected == TRUE){
-        xx <- x$CST$residual
-        xx <- format(round(xx, digits), trim = TRUE, ...)
-        nt <- appendlines(nt, xx)
-    }
-
-    if(!is.na(x$asr[1])){
-        xx <- format(round(x$asr, digits), trim = TRUE, ...)
-        nt <- appendlines(nt, xx)
-    }
-
-    n <- dim(nt)[1] / nr
-    idx <- seq(1, dim(nt)[1], n)
-    if(multirow)
-        nt[idx, 1] <- paste("\\multirow{", n, "}{*}{", nt[idx, 1], "}", sep = "")
-    if(hline)
-        idx <- c(idx[-1], dim(nt)[1] + 1)
-
-    nt <- rbind(nt, c(gettext("Total", domain = "R-descr"), x$cs, x$gt))
-
-    if(!is.na(x$prop.col[1]))
-        nt <- rbind(nt, c("", format(round(hdd * x$cs / x$gt, digits), trim = TRUE, ...), ""))
-
-    if(hline)
-        nt[idx, 1] <- paste("\\hline\n", nt[idx, 1], sep = "")
-
-    len <- dim(nt)[1]
-    rownames(nt) <- as.character(1:len)
     if(is.null(align))
         align = paste0("ll", paste(rep("r", ncol(nt) - 1), collapse = ""))
     xtable::xtable(nt, caption=caption, label=label, align=align, display=display, ...)

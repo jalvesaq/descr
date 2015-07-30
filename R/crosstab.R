@@ -5,7 +5,7 @@ crosstab <- function(dep, indep, weight = NULL, digits = 3, max.width = NA,
                      fisher = FALSE, mcnemar = FALSE, resid = FALSE,
                      sresid = FALSE, asresid = FALSE, missing.include = FALSE,
                      drop.levels = TRUE, format = "SPSS", cell.layout = TRUE,
-                     dnn = NULL, xlab = NULL, ylab = NULL, main = "",
+                     total.r, total.c, dnn = NULL, xlab = NULL, ylab = NULL, main = "",
                      user.missing.dep, user.missing.indep,
                      plot = getOption("descr.plot"), ...)
 {
@@ -55,14 +55,31 @@ crosstab <- function(dep, indep, weight = NULL, digits = 3, max.width = NA,
         tab <- round(xtabs(weight ~ dep + indep))
     names(dimnames(tab)) <- dnn
 
+    if(!missing(total.r)){
+        if(!is.logical(total.r))
+            stop(gettext("total.r must be logical", domain = "R-descr"))
+        if(missing(total.c))
+            total.c <- total.r
+    }
+    if(!missing(total.c)){
+        if(!is.logical(total.c))
+            stop(gettext("total.c must be logical", domain = "R-descr"))
+        if(missing(total.r))
+            total.r <- total.c
+    }
+    if(missing(total.r) & missing(total.c))
+        total.r <- total.c <- TRUE
+
     crosstb <- CrossTable(tab, digits = digits, max.width = max.width,
-                      expected = expected, prop.r = prop.r, prop.c = prop.c,
-                      prop.t = prop.t, prop.chisq = prop.chisq, chisq = chisq,
-                      fisher = fisher, mcnemar = mcnemar, resid = resid,
-                      sresid = sresid, asresid = asresid,
-                      missing.include = missing.include,
-                      drop.levels = drop.levels, format = format,
-                      dnn = dnn, xlab = xlab, ylab = ylab)
+                          expected = expected, prop.r = prop.r,
+                          prop.c = prop.c, prop.t = prop.t,
+                          prop.chisq = prop.chisq, chisq = chisq,
+                          fisher = fisher, mcnemar = mcnemar, resid = resid,
+                          sresid = sresid, asresid = asresid,
+                          missing.include = missing.include,
+                          drop.levels = drop.levels, format = format, dnn = dnn,
+                          cell.layout = cell.layout, total.r = total.r,
+                          total.c = total.c, xlab = xlab, ylab = ylab)
 
     if(plot == TRUE)
         plot.CrossTable(crosstb, ...)
@@ -73,7 +90,7 @@ crosstab <- function(dep, indep, weight = NULL, digits = 3, max.width = NA,
 
 plot.CrossTable <- function(x, xlab, ylab, main = "", col, inv.x = FALSE, inv.y = FALSE, ...)
 {
-    tabforplot <- t(x$t)
+    tabforplot <- t(x$tab)
     if(missing(xlab)){
         lab <- attr(x, "xlab")
         if(is.null(lab))

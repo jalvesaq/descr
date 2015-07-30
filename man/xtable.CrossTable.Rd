@@ -5,8 +5,9 @@
   The method creates an object of class xtable.
 }
 \usage{
-\method{xtable}{CrossTable}(x, caption = NULL, label = NULL, align = NULL,
-       digits = 1, display = NULL, multirow = FALSE, hline = FALSE, \dots)
+\method{xtable}{CrossTable}(x, caption = NULL, label = NULL,
+       align = NULL, digits = 1, display = NULL,
+       multirow = FALSE, hline = FALSE, percent, \dots)
 }
 
 \arguments{
@@ -22,6 +23,9 @@
   \item{hline}{A logical value indicating whether the command
     \verb{\hline} should be added to the table. See the Details section
     below.}
+  \item{percent}{A logical value indicating whether to add the percentage
+    symbol \samp{prop.r}, \samp{prop.c} and \samp{prop.t} if \samp{format} is
+    \samp{"SPSS"}.}.
   \item{\dots}{Further arguments to be passed to \code{\link[base]{format}}.}
 }
 

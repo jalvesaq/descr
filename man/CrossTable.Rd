@@ -13,8 +13,9 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
            prop.chisq = TRUE, chisq = FALSE, fisher = FALSE,
            mcnemar = FALSE, resid = FALSE, sresid = FALSE,
            asresid = FALSE, missing.include = FALSE,
-           drop.levels = TRUE, format = c("SAS","SPSS"), dnn = NULL,
-           cell.layout = TRUE, xlab = NULL, ylab = NULL, \dots)
+           drop.levels = TRUE, format = c("SAS","SPSS"),
+           dnn = NULL, cell.layout = TRUE, total.r, total.c,
+           xlab = NULL, ylab = NULL, \dots)
 }
 \arguments{
   \item{x}{A vector or a matrix. If y is specified, x must be a vector.}
@@ -53,6 +54,8 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
   \item{dnn}{The names to be given to the dimensions in the result (the dimnames
     names).}
   \item{cell.layout}{If \code{TRUE}, print the cell layout.}
+  \item{total.r}{If \code{TRUE}, print row totals.}
+  \item{total.c}{If \code{TRUE}, print column totals.}
   \item{xlab}{A title for the x axis when plotting the CrossTable object (see
     \code{\link[graphics]{title}}). If missing, \code{dnn[1]} is used if not
     \code{NULL}.}
@@ -74,12 +77,19 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
 
   Note 2: 'x' and 'y' labels will be truncated if the table is not going to
   fit to the screen, according to the value of \code{getOption("width")}.
+
+
+  If both arguments \samp{total.c} and \samp{total.r} are missing, both will
+  be \code{TRUE}. If only one of them is missing, the other will have the same
+  value.
 }
 \value{
   A list of class \code{CrossTable} containing parameters used by the
   \code{print.CrossTable} method and the following components:
 
-  t:            An n by m matrix containing table cell counts.
+  nt:           A character matrix to be outputed.
+
+  tab:          An n by m matrix containing table cell counts.
 
   prop.row:     An n by m matrix containing cell row proportions.
 
@@ -136,4 +146,5 @@ ct <- CrossTable(warpbreaks$wool, warpbreaks$tension,
                  dnn = c("Wool", "Tension"))
 plot(ct)
 print(ct)
+# For better examples, see the documentation of crosstab().
 }

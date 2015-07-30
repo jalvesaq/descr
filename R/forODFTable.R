@@ -11,10 +11,10 @@ forODFTable <- function(x, digits = 1, ...)
         hdd <- 100
     else
         hdd <- 1
-    nr <- dim(x$t)[1]
-    nc <- dim(x$t)[2]
+    nr <- dim(x$tab)[1]
+    nc <- dim(x$tab)[2]
 
-    tab <- format(x$t, ...)
+    tab <- format(x$tab, ...)
     if(x$expected == TRUE){
         xex <- outer(x$rs, x$cs, "*")
         xex <- xex / x$gt
@@ -23,7 +23,7 @@ forODFTable <- function(x, digits = 1, ...)
         tab <- matrix(tab, nrow = length(x$rs), ncol = length(x$cs))
     }
     if(x$prop.chisq){
-        xx <- ((x$CST$expected - x$t) ^ 2) / x$CST$expected
+        xx <- ((x$CST$expected - x$tab) ^ 2) / x$CST$expected
         xx <- format(round(xx, digits), trim = TRUE, ...)
         tab <- paste(tab, xx, sep = "<text:line-break/>")
         tab <- matrix(tab, nrow = length(x$rs), ncol = length(x$cs))
@@ -50,7 +50,7 @@ forODFTable <- function(x, digits = 1, ...)
         tab <- matrix(tab, nrow = length(x$rs), ncol = length(x$cs))
     }
     if(!is.na(x$resid) && x$resid == TRUE && x$expected == TRUE){
-        xx <- x$t - xex
+        xx <- x$tab - xex
         xx <- format(round(xx, digits), trim = TRUE, ...)
         tab <- paste(tab, xx, sep = "<text:line-break/>")
         tab <- matrix(tab, nrow = length(x$rs), ncol = length(x$cs))
