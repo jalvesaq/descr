@@ -45,6 +45,8 @@ xtable.CrossTable <- function(x, caption = NULL, label = NULL, align = NULL,
         nt[idxh, 1] <- paste("\\hline\n", nt[idxh, 1], sep = "")
 
     if(multirow){
+        idxc <- 1:ncol(x$tab) + 1
+        colnames(nt)[idxc] <- paste0("\\multicolumn{1}{c}{", colnames(nt)[idxc], "}")
         col1txt <- paste0("\\multirow{2}{*}{", gsub("\\$", "\\\\$", x$RowData), "} & \\multicolumn{", ncol(x$tab), "}{c}{", gsub("\\$", "\\\\$", x$ColData), "}")
         if(x$total.r)
             col1txt <- paste0(col1txt, " & \\multirow{2}{*}{", colnames(nt)[ncol(nt)], "}\\\\\n \\cline{2-", ncol(x$tab)+1,"}", sep = "")
