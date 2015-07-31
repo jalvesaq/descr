@@ -18,31 +18,47 @@
 # so that large integers do not print in
 # scientific notation
 
+GetDigitsList <- function(x)
+{
+    if(is.list(x$digits))
+        dgts <- list(expected = ifelse(is.null(x$digits$expected), 1, x$digits$expected),
+                     prop = ifelse(is.null(x$digits$prop), 1, x$digits$prop),
+                     percent = ifelse(is.null(x$digits$percent), 1, x$digits$percent),
+                     others = ifelse(is.null(x$digits$others), 1, x$digits$others))
+    else
+        dgts <- list(expected = x$digits[1], prop = x$digits[1],
+                     percent = x$digits[1],  others = x$digits[1])
+    dgts
+}
 
-CreateNewTab <- function(x, prct = FALSE, ...)
+CreateNewTab <- function(x, ...)
 {
     nr <- dim(x$tab)[1]
     nc <- dim(x$tab)[2]
     nt <- cbind(x$tab, x$rs)
     colnames(nt)[ncol(nt)] <- gettext("Total", domain = "R-descr")
 
+    dgts <- GetDigitsList(x)
+
     if(x$format == "SPSS"){
         hdd <- 100
-        prct <- prct
+        dgts$prop <- dgts$percent
     } else {
         hdd <- 1
-        prct <- FALSE
+        x$percent <- FALSE
     }
 
-    appendlines <- function(nt, xx, addprct = FALSE, hasttl = FALSE)
+    appendlines <- function(nt, xx, rowlab, prct = FALSE, hasttl = FALSE)
     {
-        if(addprct)
+        if(prct)
             for(i in 1:nrow(xx))
                 for(j in 1:ncol(xx))
                     xx[i, j] <- paste0(xx[i, j], "%")
         if(!hasttl)
             xx <- cbind(xx, rep("", nr))
-        rownames(xx) <- rep("", nrow(xx))
+        if(!x$row.labels)
+            rowlab <- " "
+        rownames(xx) <- rep(rowlab, nrow(xx))
         n <- dim(nt)[1] / nr
         nt <- rbind(nt, xx)
         idx <- integer()
@@ -62,47 +78,62 @@ CreateNewTab <- function(x, prct = FALSE, ...)
 
     if(x$expected){
         xx <- x$CST$expected
-        xx <- format(round(xx, 1), trim = TRUE, ...)
-        nt <- appendlines(nt, xx)
+        xx <- format(round(xx, dgts$expected), trim = TRUE, ...)
+        nt <- appendlines(nt, xx, gettext("expected", domain = "R-descr"))
     }
 
     if(x$prop.chisq){
         xx <- ((x$CST$expected - x$tab) ^ 2) / x$CST$expected
-        xx <- format(round(xx, digits = x$digits), trim = TRUE, ...)
-        nt <- appendlines(nt, xx)
+        xx <- format(round(xx, digits = dgts$others), trim = TRUE, ...)
+        nt <- appendlines(nt, xx, gettext("chisq", domain = "R-descr"))
     }
 
     if(!is.na(x$prop.row[1])){
         xx <- cbind(x$prop.row, x$rs / x$gt)
-        xx <- format(round(xx * hdd, digits = x$digits), trim = TRUE, ...)
-        nt <- appendlines(nt, xx, prct, TRUE)
+        xx <- format(round(xx * hdd, digits = dgts$prop), trim = TRUE, ...)
+        if(hdd == 100)
+            nt <- appendlines(nt, xx, gettext("row %", domain = "R-descr"),
+                              x$percent, TRUE)
+        else
+            nt <- appendlines(nt, xx, gettext("row prop.", domain = "R-descr"),
+                              x$percent, TRUE)
     }
 
     if(!is.na(x$prop.col[1])){
-        xx <- format(round(x$prop.col * hdd, digits = x$digits), trim = TRUE, ...)
-        nt <- appendlines(nt, xx, prct)
+        xx <- format(round(x$prop.col * hdd, digits = dgts$prop), trim = TRUE, ...)
+        if(hdd == 100)
+            nt <- appendlines(nt, xx, gettext("col %", domain = "R-descr"),
+                              x$percent)
+        else
+            nt <- appendlines(nt, xx, gettext("col prop.", domain = "R-descr"),
+                              x$percent)
     }
 
     if(!is.na(x$prop.tbl[1])){
-        xx <- format(round(x$prop.tbl * hdd, digits = x$digits), trim = TRUE, ...)
-        nt <- appendlines(nt, xx, prct)
+        xx <- format(round(x$prop.tbl * hdd, digits = dgts$prop), trim = TRUE, ...)
+        if(hdd == 100)
+            nt <- appendlines(nt, xx, gettext("table %", domain = "R-descr"),
+                              x$percent)
+        else
+            nt <- appendlines(nt, xx, gettext("table prop.", domain = "R-descr"),
+                              x$percent)
     }
 
     if(!is.na(x$resid) && x$resid == TRUE && x$expected == TRUE){
         xx <- x$tab - x$CST$expected
-        xx <- format(round(xx, digits = x$digits), trim = TRUE, ...)
-        nt <- appendlines(nt, xx)
+        xx <- format(round(xx, digits = dgts$others), trim = TRUE, ...)
+        nt <- appendlines(nt, xx, gettext("residual", domain = "R-descr"))
     }
 
     if(!is.na(x$sresid) && x$sresid == TRUE && x$expected == TRUE){
         xx <- x$CST$residual
-        xx <- format(round(xx, digits = x$digits), trim = TRUE, ...)
-        nt <- appendlines(nt, xx)
+        xx <- format(round(xx, digits = dgts$others), trim = TRUE, ...)
+        nt <- appendlines(nt, xx, gettext("std. res.", domain = "R-descr"))
     }
 
     if(!is.na(x$asr[1])){
-        xx <- format(round(x$asr, digits = x$digits), trim = TRUE, ...)
-        nt <- appendlines(nt, xx)
+        xx <- format(round(x$asr, digits = dgts$others), trim = TRUE, ...)
+        nt <- appendlines(nt, xx, gettext("adj. std. res.", domain = "R-descr"))
     }
 
     if(x$total.c){
@@ -111,8 +142,8 @@ CreateNewTab <- function(x, prct = FALSE, ...)
 
         # Add final row if necessary
         if(!is.na(x$prop.col[1])){
-            xx <- format(round(hdd * x$cs / x$gt, digits = x$digits), trim = TRUE, ...)
-            if(hdd == 100 && prct)
+            xx <- format(round(hdd * x$cs / x$gt, digits = dgts$prop), trim = TRUE, ...)
+            if(hdd == 100 && x$percent)
                 xx <- paste0(xx, "%")
             nt <- rbind(nt, c(xx, ""))
         }
@@ -177,12 +208,16 @@ Abbrev1 <- function(x, lmt)
     paste0(x, collapse = "")
 }
 
-CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
+CrossTable <- function (x, y,
+    digits = list(expected = 1, prop = 3, percent = 1, others = 3),
+    max.width = NA, expected = FALSE,
     prop.r = TRUE, prop.c = TRUE, prop.t = TRUE, prop.chisq = TRUE,
     chisq = FALSE, fisher = FALSE, mcnemar = FALSE, resid = FALSE,
     sresid = FALSE, asresid = FALSE, missing.include = FALSE,
     drop.levels = TRUE, format = c("SAS", "SPSS"), dnn = NULL,
-    cell.layout = TRUE, total.r, total.c, xlab = NULL, ylab = NULL, ...)
+    cell.layout = TRUE, row.labels = !cell.layout,
+    percent = (format == "SPSS" && !row.labels),
+    total.r, total.c, xlab = NULL, ylab = NULL, ...)
 {
     format = match.arg(format)
 
@@ -363,7 +398,8 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
                 max.width = max.width, vector.x = vector.x,
                 expected = expected, prop.chisq = prop.chisq, resid = resid,
                 sresid = sresid, asresid = asresid, format = format,
-                cell.layout = cell.layout, total.r = total.r, total.c = total.c)
+                cell.layout = cell.layout, row.labels = row.labels,
+                percent = percent, total.r = total.r, total.c = total.c)
 
     # Add "t" element to avoid breaking pander package which manipulates the
     # CrossTable object:
@@ -377,12 +413,12 @@ CrossTable <- function (x, y, digits = 3, max.width = NA, expected = FALSE,
     res
 }
 
-
 print.CrossTable <- function(x, ...)
 {
     argl <- list(...)
-    if(length(grep("^digits$", names(argl))) > 0)
-        x$digits <- argl$digits
+    for(n in names(argl))
+        if(n %in% names(x))
+            x[[n]] <- argl[[n]]
 
     nt <- CreateNewTab(x, ...)
     tab <- x$tab
@@ -404,7 +440,6 @@ print.CrossTable <- function(x, ...)
     ASR <- x$asr
     RowData <- x$RowData
     ColData <- x$ColData
-    digits <- x$digits
     max.width <- x$max.width
     vector.x <- x$vector.x
     expected <- x$expected
@@ -423,14 +458,14 @@ print.CrossTable <- function(x, ...)
     total.c <- x$total.c
     outDec <- getOption("OutDec")
 
-    nsep <- "  | " # normal separator
+    dgts <- GetDigitsList(x)
+
     if(format == "SAS") {
         hdd <- 1
-        psep <- "  | " # percent separator
     } else {
         if (format == "SPSS") {
             hdd <- 100
-            psep <- "% | "
+            dgts$prop <- dgts$percent
         } else {
             stop("unknown format")
         }
@@ -438,42 +473,6 @@ print.CrossTable <- function(x, ...)
 
     if(vector.x)
         expected <- prop.chisq <- prop.c <- prop.t <- resid <- sresid <- asresid <- FALSE
-
-    ## Column and Row Total Headings
-    ColTotal <- gettext("Total", domain = "R-descr")
-    RowTotal <- ColTotal
-
-    ## Set consistent column widths based upon dimnames and table values
-    strt <- formatC(unclass(tab), digits = digits, format = "f", width = 0, decimal.mark = outDec)
-    CWidth <- max(digits + 2, c(nchar(strt, type = "width"),
-                                nchar(dimnames(tab)[[2]], type = "width"),
-                                nchar(RS, type = "width"),
-                                nchar(CS, type = "width"),
-                                nchar(RowTotal, type = "width")))
-    if(prop.r){
-        if(vector.x)
-            strt <- formatC(unclass(CPT), digits = digits, format = "f", width = 0, decimal.mark = outDec)
-        else
-            strt <- formatC(unclass(CPR), digits = digits, format = "f", width = 0, decimal.mark = outDec)
-        CWidth <- max(CWidth, nchar(strt, type = "width"))
-    }
-    RWidth <- max(c(nchar(dimnames(tab)[[1]], type = "width"), nchar(ColTotal, type = "width")))
-
-    ## Adjust first column width if Data Titles present
-    if (is.na(RowData) == FALSE)
-        RWidth <- max(RWidth, nchar(RowData, type = "width"))
-
-    ## Create row separators
-    RowSep <- paste(rep("-", CWidth + 2), collapse = "")
-    RowSep1 <- paste(rep("-", RWidth + 1), collapse = "")
-    SpaceSep1 <- paste(rep(" ", RWidth), collapse = "")
-    SpaceSep2 <- paste(rep(" ", CWidth), collapse = "")
-
-    ## Create formatted Names
-    FirstCol <- formatC(dimnames(tab)[[1]], width = RWidth, format = "s")
-    ColTotal <- formatC(ColTotal, width = RWidth, format = "s")
-    RowTotal <- formatC(RowTotal, width = CWidth, format = "s")
-
 
     #### Printing the tables
 
@@ -515,14 +514,24 @@ print.CrossTable <- function(x, ...)
         cat("|-------------------------|\n")
     }
 
-    #cat(gettext("Total Observations in Table:", domain = "R-descr"), GT, "\n\n")
-
     ## Print 1 X N vector
     if (vector.x) {
+        ## Set consistent column widths based upon dimnames and table values
+        strt <- formatC(unclass(tab), digits = dgts$prop, format = "f", width = 0, decimal.mark = outDec)
+        CWidth <- max(dgts$prop + 2, c(nchar(strt, type = "width"),
+                                    nchar(dimnames(tab)[[2]], type = "width")))
+        if(prop.r){
+            if(vector.x)
+                strt <- formatC(unclass(CPT), digits = dgts$prop, format = "f", width = 0, decimal.mark = outDec)
+            CWidth <- max(CWidth, nchar(strt, type = "width"))
+        }
+
+        ## Create row separators
+        RowSep <- paste(rep("-", CWidth + 2), collapse = "")
+
         if(is.na(max.width))
             max.width = floor((getOption("width") - 2) / (CWidth + 3))
-        if (length(tab) > max.width)
-        {
+        if (length(tab) > max.width) {
             ## set breakpoints for output based upon max.width
             final.row <- length(tab) %% max.width
             max <- length(tab) - final.row
@@ -530,24 +539,19 @@ print.CrossTable <- function(x, ...)
             start <- seq(1, max, max.width)
             end <- start + (max.width - 1)
             ## Add final.row if required
-            if (final.row > 0)
-            {
+            if (final.row > 0) {
                 start <- c(start, end[length(end)] + 1)
                 end <- c(end, end[length(end)] + final.row)
             }
-        }
-        else
-        {
+        } else {
             ## Each value printed horizontally in a single row
             start <- 1
             end <- length(tab)
         }
 
-        SpaceSep3 <- paste(SpaceSep2, " ", sep = "")
         cat("\n")
 
-        for (i in 1:length(start))
-        {
+        for (i in 1:length(start)) {
             cat("| ")
             cat(paste(formatC(dimnames(tab)[[2]][start[i]:end[i]], width = CWidth, format = "s"), collapse = " | "))
             cat(" |\n|")
@@ -557,7 +561,7 @@ print.CrossTable <- function(x, ...)
             if(prop.r){
                 cat(" |\n| ")
                 cat(formatC(CPT[, start[i]:end[i]] * hdd, width = CWidth,
-                            digits = digits, format = "f", decimal.mark = outDec), sep = " | ")
+                            digits = dgts$prop, format = "f", decimal.mark = outDec), sep = " | ")
             }
             cat(" |\n|")
             cat(rep(RowSep, (end[i] - start[i]) + 1), sep = "|")
@@ -574,9 +578,8 @@ print.CrossTable <- function(x, ...)
 
     nr <- nrow(nt)
     nc <- ncol(nt)
-    m <- nt
     rnames <- rownames(nt)
-    cnames <- colnames(m)
+    cnames <- colnames(nt)
 
     # Check column widths and fix them if necessary
     availablewidth <- getOption("width")
@@ -609,6 +612,17 @@ print.CrossTable <- function(x, ...)
     dashedline <- rep("-", sum(clabwidth) + 3 * nc + rlabwidth)
     ddashedline <- gsub("-", "=", dashedline)
 
+    # Calculate horizontal line locations
+    if(x$total.c && !is.na(x$prop.col)[1])
+        nrnt <- nrow(nt) - 2
+    else if(x$total.c)
+        nrnt <- nrow(nt) - 1
+    else
+        nrnt <- nrow(nt)
+    n <- nrnt / nrow(tab)
+    idxh <- seq(n+1, nrnt+1, n)
+    # idxh <- idxh[idxh < nrow(nt)] # necessary when total.c = FALSE
+
     ## Print table cells
     cat("\n", ddashedline, "\n", sep = "")
     if(ColData != "")
@@ -619,18 +633,24 @@ print.CrossTable <- function(x, ...)
         cat(formatC(RowData, width = rlabwidth, format = "s", flag = "-"))
     for(j in 1:nc)
         cat("  ", formatC(cnames[j], width = clabwidth[j]))
+    cat("\n", dashedline, "\n", sep = "")
     for(i in 1:nr){
-        if(rnames[i] != ""){
-            cat("\n", dashedline, "\n", sep = "")
-            cat(formatC(rnames[i], width = rlabwidth, format = "s", flag = "-"), sep = "")
+        if(i %in% idxh)
+            cat(dashedline, "\n", sep = "")
+        cat(formatC(rnames[i], width = rlabwidth, format = "s", flag = "-"), sep = "")
+        if(x$percent && (prop.r || prop.c || prop.t)){
+            for(j in 1:nc)
+                if(grepl("%", nt[i, j]))
+                    cat("   ", formatC(nt[i, j], width = clabwidth[j]), sep = "")
+                else
+                    cat("  ", formatC(nt[i, j], width = clabwidth[j]), " ", sep = "")
         } else {
-            cat("\n", formatC(" ", width = rlabwidth), sep = "")
+            for(j in 1:nc)
+                cat("  ", formatC(nt[i, j], width = clabwidth[j]))
         }
-        for(j in 1:nc){
-            cat("  ", formatC(m[i,j], width = clabwidth[j]))
-        }
+        cat("\n")
     }
-    cat("\n", ddashedline, "\n", sep = "")
+    cat(ddashedline, "\n", sep = "")
 
 
     ## Print Statistics
@@ -642,7 +662,7 @@ print.CrossTable <- function(x, ...)
 
         cat(CST$method, "\n")
         cat("------------------------------------------------------------\n")
-        fp <- format.pval(CST$p.value, digits = digits)
+        fp <- format.pval(CST$p.value, digits = dgts$others)
         pv <- paste("p", if(substr(fp, 1L, 1L) == "<") fp else paste("=", fp))
         cat(gettext("Chi^2 =", domain = "R-descr"), CST$statistic,
             "    ", gettext("d.f. =", domain = "R-descr"), CST$parameter,
@@ -652,7 +672,7 @@ print.CrossTable <- function(x, ...)
         {
             cat(CSTc$method, "\n")
             cat("------------------------------------------------------------\n")
-            fp <- format.pval(CSTc$p.value, digits = digits)
+            fp <- format.pval(CSTc$p.value, digits = dgts$others)
             pv <- paste("p", if(substr(fp, 1L, 1L) == "<") fp else paste("=", fp))
             cat(gettext("Chi^2 =", domain = "R-descr"), CSTc$statistic,
                 "    ", gettext("d.f. =", domain = "R-descr"), CSTc$parameter,
@@ -666,7 +686,7 @@ print.CrossTable <- function(x, ...)
         cat(rep("\n", 2))
         cat(McN$method, "\n")
         cat("------------------------------------------------------------\n")
-        fp <- format.pval(McN$p.value, digits = digits)
+        fp <- format.pval(McN$p.value, digits = dgts$others)
         pv <- paste("p", if(substr(fp, 1L, 1L) == "<") fp else paste("=", fp))
         cat(gettext("Chi^2 =", domain = "R-descr"), McN$statistic,
             "    ", gettext("d.f. =", domain = "R-descr"), McN$parameter,
@@ -676,7 +696,7 @@ print.CrossTable <- function(x, ...)
         {
             cat(McNc$method, "\n")
             cat("------------------------------------------------------------\n")
-            fp <- format.pval(McNc$p.value, digits = digits)
+            fp <- format.pval(McNc$p.value, digits = dgts$others)
             pv <- paste("p", if(substr(fp, 1L, 1L) == "<") fp else paste("=", fp))
             cat(gettext("Chi^2 =", domain = "R-descr"), McNc$statistic,
                 "    ", gettext("d.f. =", domain = "R-descr"), McNc$parameter,
@@ -698,21 +718,21 @@ print.CrossTable <- function(x, ...)
 
             cat(gettext("Alternative hypothesis: true odds ratio is not equal to 1",
                     domain = "R-descr"), "\n")
-            fp <- format.pval(FTt$p.value, digits = digits)
+            fp <- format.pval(FTt$p.value, digits = dgts$others)
             pv <- paste("p", if(substr(fp, 1L, 1L) == "<") fp else paste("=", fp))
             cat(pv, "\n")
             cat(gettext("95% confidence interval:", domain = "R-descr"), FTt$conf.int, "\n\n")
 
             cat(gettext("Alternative hypothesis: true odds ratio is less than 1",
                     domain = "R-descr"), "\n")
-            fp <- format.pval(FTl$p.value, digits = digits)
+            fp <- format.pval(FTl$p.value, digits = dgts$others)
             pv <- paste("p", if(substr(fp, 1L, 1L) == "<") fp else paste("=", fp))
             cat(pv, "\n")
             cat(gettext("95% confidence interval:", domain = "R-descr"), FTl$conf.int, "\n\n")
 
             cat(gettext("Alternative hypothesis: true odds ratio is greater than 1",
                     domain = "R-descr"), "\n")
-            fp <- format.pval(FTg$p.value, digits = digits)
+            fp <- format.pval(FTg$p.value, digits = dgts$others)
             pv <- paste("p", if(substr(fp, 1L, 1L) == "<") fp else paste("=", fp))
             cat(pv, "\n")
             cat(gettext("95% confidence interval:", domain = "R-descr"), FTg$conf.int, "\n\n")
@@ -720,7 +740,7 @@ print.CrossTable <- function(x, ...)
         else
         {
             cat(gettext("Alternative hypothesis: two.sided", domain = "R-descr"), "\n")
-            fp <- format.pval(FTt$p.value, digits = digits)
+            fp <- format.pval(FTt$p.value, digits = dgts$others)
             pv <- paste("p", if(substr(fp, 1L, 1L) == "<") fp else paste("=", fp))
             cat(pv, "\n")
         }

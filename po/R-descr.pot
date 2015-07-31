@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-13 14:48-0400\n"
+"POT-Creation-Date: 2015-07-31 16:16-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,155 +17,202 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: descr/R/CrossTable.R:39
-msgid "max.width must be >= 1"
-msgstr ""
-
-#: descr/R/CrossTable.R:59
-msgid "all entries of x must be nonnegative and finite"
-msgstr ""
-
-#: descr/R/CrossTable.R:83
-msgid "x must be either a vector or a 2 dimensional matrix, if y is not given"
-msgstr ""
-
-#: descr/R/CrossTable.R:95
-msgid "x and y must have the same length"
-msgstr ""
-
-#: descr/R/CrossTable.R:106
-msgid "dnn must have length of 2, one element for each table dimension"
-msgstr ""
-
-#: descr/R/CrossTable.R:251
-msgid "unknown format"
-msgstr ""
-
-#: descr/R/CrossTable.R:259 descr/R/CrossTable.R:481 descr/R/compmeans.R:119
+#: descr/R/CrossTable.R:39 descr/R/CrossTable.R:140 descr/R/compmeans.R:119
 #: descr/R/forODFTable.R:71 descr/R/forODFTable.R:72 descr/R/freq.R:75
-#: descr/R/xtable.R:16 descr/R/xtable.R:21 descr/R/xtable.R:119
 msgid "Total"
 msgstr ""
 
+#: descr/R/CrossTable.R:81
+msgid "expected"
+msgstr ""
+
+#: descr/R/CrossTable.R:87
+msgid "chisq"
+msgstr ""
+
+#: descr/R/CrossTable.R:94
+msgid "row %"
+msgstr ""
+
+#: descr/R/CrossTable.R:97
+msgid "row prop."
+msgstr ""
+
+#: descr/R/CrossTable.R:104
+msgid "col %"
+msgstr ""
+
+#: descr/R/CrossTable.R:107
+msgid "col prop."
+msgstr ""
+
+#: descr/R/CrossTable.R:114
+msgid "table %"
+msgstr ""
+
+#: descr/R/CrossTable.R:117
+msgid "table prop."
+msgstr ""
+
+#: descr/R/CrossTable.R:124
+msgid "residual"
+msgstr ""
+
+#: descr/R/CrossTable.R:130
+msgid "std. res."
+msgstr ""
+
+#: descr/R/CrossTable.R:135
+msgid "adj. std. res."
+msgstr ""
+
+#: descr/R/CrossTable.R:231
+msgid "max.width must be >= 1"
+msgstr ""
+
+#: descr/R/CrossTable.R:251
+msgid "all entries of x must be nonnegative and finite"
+msgstr ""
+
+#: descr/R/CrossTable.R:275
+msgid "x must be either a vector or a 2 dimensional matrix, if y is not given"
+msgstr ""
+
+#: descr/R/CrossTable.R:287
+msgid "x and y must have the same length"
+msgstr ""
+
 #: descr/R/CrossTable.R:298
+msgid "dnn must have length of 2, one element for each table dimension"
+msgstr ""
+
+#: descr/R/CrossTable.R:378 descr/R/crosstab.R:64
+msgid "total.r must be logical"
+msgstr ""
+
+#: descr/R/CrossTable.R:384 descr/R/crosstab.R:70
+msgid "total.c must be logical"
+msgstr ""
+
+#: descr/R/CrossTable.R:469
+msgid "unknown format"
+msgstr ""
+
+#: descr/R/CrossTable.R:480
 msgid "Cell Contents"
 msgstr ""
 
-#: descr/R/CrossTable.R:301
+#: descr/R/CrossTable.R:483
 msgid "|                       N |"
 msgstr ""
 
-#: descr/R/CrossTable.R:303
+#: descr/R/CrossTable.R:485
 msgid "|              Expected N |"
 msgstr ""
 
-#: descr/R/CrossTable.R:305 descr/R/CrossTable.R:317
+#: descr/R/CrossTable.R:487 descr/R/CrossTable.R:499
 msgid "| Chi-square contribution |"
 msgstr ""
 
-#: descr/R/CrossTable.R:307
+#: descr/R/CrossTable.R:489
 msgid "|           N / Row Total |"
 msgstr ""
 
-#: descr/R/CrossTable.R:309
+#: descr/R/CrossTable.R:491
 msgid "|           N / Col Total |"
 msgstr ""
 
-#: descr/R/CrossTable.R:311
+#: descr/R/CrossTable.R:493
 msgid "|         N / Table Total |"
 msgstr ""
 
-#: descr/R/CrossTable.R:313
+#: descr/R/CrossTable.R:495
 msgid "|                   Count |"
 msgstr ""
 
-#: descr/R/CrossTable.R:315
+#: descr/R/CrossTable.R:497
 msgid "|         Expected Values |"
 msgstr ""
 
-#: descr/R/CrossTable.R:319
+#: descr/R/CrossTable.R:501
 msgid "|             Row Percent |"
 msgstr ""
 
-#: descr/R/CrossTable.R:321
+#: descr/R/CrossTable.R:503
 msgid "|          Column Percent |"
 msgstr ""
 
-#: descr/R/CrossTable.R:323
+#: descr/R/CrossTable.R:505
 msgid "|           Total Percent |"
 msgstr ""
 
-#: descr/R/CrossTable.R:326
+#: descr/R/CrossTable.R:508
 msgid "|                Residual |"
 msgstr ""
 
-#: descr/R/CrossTable.R:328
+#: descr/R/CrossTable.R:510
 msgid "|            Std Residual |"
 msgstr ""
 
-#: descr/R/CrossTable.R:330
+#: descr/R/CrossTable.R:512
 msgid "|           Adj Std Resid |"
 msgstr ""
 
-#: descr/R/CrossTable.R:334
-msgid "Total Observations in Table:"
-msgstr ""
-
-#: descr/R/CrossTable.R:385
+#: descr/R/CrossTable.R:572
 msgid "Number of Missing Observations:"
 msgstr ""
 
-#: descr/R/CrossTable.R:562
+#: descr/R/CrossTable.R:659
 msgid "Statistics for All Table Factors"
 msgstr ""
 
-#: descr/R/CrossTable.R:569 descr/R/CrossTable.R:579 descr/R/CrossTable.R:593
-#: descr/R/CrossTable.R:603
+#: descr/R/CrossTable.R:666 descr/R/CrossTable.R:676 descr/R/CrossTable.R:690
+#: descr/R/CrossTable.R:700
 msgid "Chi^2 ="
 msgstr ""
 
-#: descr/R/CrossTable.R:570 descr/R/CrossTable.R:580 descr/R/CrossTable.R:594
-#: descr/R/CrossTable.R:604
+#: descr/R/CrossTable.R:667 descr/R/CrossTable.R:677 descr/R/CrossTable.R:691
+#: descr/R/CrossTable.R:701
 msgid "d.f. ="
 msgstr ""
 
-#: descr/R/CrossTable.R:614
+#: descr/R/CrossTable.R:711
 msgid "Fisher's Exact Test for Count Data"
 msgstr ""
 
-#: descr/R/CrossTable.R:619
+#: descr/R/CrossTable.R:716
 msgid "Sample estimate odds ratio:"
 msgstr ""
 
-#: descr/R/CrossTable.R:621
+#: descr/R/CrossTable.R:718
 msgid "Alternative hypothesis: true odds ratio is not equal to 1"
 msgstr ""
 
-#: descr/R/CrossTable.R:626 descr/R/CrossTable.R:633 descr/R/CrossTable.R:640
+#: descr/R/CrossTable.R:723 descr/R/CrossTable.R:730 descr/R/CrossTable.R:737
 msgid "95% confidence interval:"
 msgstr ""
 
-#: descr/R/CrossTable.R:628
+#: descr/R/CrossTable.R:725
 msgid "Alternative hypothesis: true odds ratio is less than 1"
 msgstr ""
 
-#: descr/R/CrossTable.R:635
+#: descr/R/CrossTable.R:732
 msgid "Alternative hypothesis: true odds ratio is greater than 1"
 msgstr ""
 
-#: descr/R/CrossTable.R:644
+#: descr/R/CrossTable.R:741
 msgid "Alternative hypothesis: two.sided"
 msgstr ""
 
-#: descr/R/CrossTable.R:657
+#: descr/R/CrossTable.R:754
 msgid "Minimum expected frequency:"
 msgstr ""
 
-#: descr/R/CrossTable.R:662
+#: descr/R/CrossTable.R:759
 msgid "Cells with Expected Frequency < 5:"
 msgstr ""
 
-#: descr/R/CrossTable.R:663
+#: descr/R/CrossTable.R:760
 msgid "of"
 msgstr ""
 
@@ -257,11 +304,11 @@ msgstr ""
 msgid "Number of levels of \"f\" is higher than maxlevels."
 msgstr ""
 
-#: descr/R/crosstab.R:13
+#: descr/R/crosstab.R:17
 msgid "The argument 'dep' (dependent variable) is missing."
 msgstr ""
 
-#: descr/R/crosstab.R:15
+#: descr/R/crosstab.R:19
 msgid "The 'indep' (independent variable) is missing."
 msgstr ""
 

@@ -6,8 +6,8 @@
 }
 \usage{
 \method{xtable}{CrossTable}(x, caption = NULL, label = NULL,
-       align = NULL, digits = 1, display = NULL,
-       multirow = FALSE, hline = FALSE, percent, \dots)
+       align = NULL, display = NULL,
+       multirow = FALSE, hline = FALSE, \dots)
 }
 
 \arguments{
@@ -16,17 +16,14 @@
   \item{label}{See \code{\link[xtable]{xtable}}.}
   \item{align}{See \code{\link[xtable]{xtable}}.}
   \item{display}{See \code{\link[xtable]{xtable}}.}
-  \item{digits}{See \code{\link[base]{round}}.}
   \item{multirow}{A logical value indicating whether the command
     \verb{\multirow} should be added to the table. See the Details section
     below.}
   \item{hline}{A logical value indicating whether the command
     \verb{\hline} should be added to the table. See the Details section
     below.}
-  \item{percent}{A logical value indicating whether to add the percentage
-    symbol \samp{prop.r}, \samp{prop.c} and \samp{prop.t} if \samp{format} is
-    \samp{"SPSS"}.}.
-  \item{\dots}{Further arguments to be passed to \code{\link[base]{format}}.}
+  \item{\dots}{Further arguments to be passed to \code{\link[base]{format}} or
+    to replace arguments previously passed to \code{\link{CrossTable}}.}
 }
 
 \details{

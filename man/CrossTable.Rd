@@ -8,20 +8,26 @@
   of all table factors.
 }
 \usage{
-CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
+CrossTable(x, y,
+           digits = list(expected = 1, prop = 3, percent = 1, others = 3),
+           max.width = NA, expected = FALSE,
            prop.r = TRUE, prop.c = TRUE, prop.t = TRUE,
            prop.chisq = TRUE, chisq = FALSE, fisher = FALSE,
            mcnemar = FALSE, resid = FALSE, sresid = FALSE,
            asresid = FALSE, missing.include = FALSE,
            drop.levels = TRUE, format = c("SAS","SPSS"),
-           dnn = NULL, cell.layout = TRUE, total.r, total.c,
-           xlab = NULL, ylab = NULL, \dots)
+           dnn = NULL, cell.layout = TRUE,
+           row.labels = !cell.layout,
+           percent = (format == "SPSS" && !row.labels),
+           total.r, total.c, xlab = NULL, ylab = NULL, \dots)
 }
 \arguments{
   \item{x}{A vector or a matrix. If y is specified, x must be a vector.}
   \item{y}{A vector in a matrix or a dataframe.}
-  \item{digits}{Number of digits after the decimal point for cell
-    proportions.}
+  \item{digits}{Named list with number of digits after the decimal point for
+    four categories of statistics: expected values, cell proportions,
+    percentage and others statistics. It can also be a numeric vector with a
+    single number if you want the same number of digits in all statistics.}
   \item{max.width}{In the case of a 1 x n table, the default will be
     to print the output horizontally. If the number of columns exceeds
     max.width, the table will be wrapped for each successive increment
@@ -54,6 +60,11 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
   \item{dnn}{The names to be given to the dimensions in the result (the dimnames
     names).}
   \item{cell.layout}{If \code{TRUE}, print the cell layout.}
+  \item{row.labels}{If \code{TRUE}, add labels to rows of calculated
+    statistics.}
+  \item{percent}{A logical value indicating whether to add the percentage
+    symbol \samp{prop.r}, \samp{prop.c} and \samp{prop.t} if \samp{format} is
+    \samp{"SPSS"}.}.
   \item{total.r}{If \code{TRUE}, print row totals.}
   \item{total.c}{If \code{TRUE}, print column totals.}
   \item{xlab}{A title for the x axis when plotting the CrossTable object (see
@@ -143,7 +154,17 @@ CrossTable(x, y, digits = 3, max.width = NA, expected = FALSE,
 data(warpbreaks, package = "datasets")
 ct <- CrossTable(warpbreaks$wool, warpbreaks$tension,
                  dnn = c("Wool", "Tension"))
-plot(ct)
+data(esoph, package = "datasets")
+ct <- CrossTable(esoph$alcgp, esoph$agegp, expected = TRUE,
+                 chisq = FALSE, prop.chisq = FALSE,
+                 dnn = c("Alcohol consumption", "Tobacco consumption"))
+plot(ct, inv.y = TRUE)
 print(ct)
-# For better examples, see the documentation of crosstab().
+
+# While printing the object, you can replace some (but not all)
+# arguments previously passed to CrossTable
+print(ct, format = "SPSS", cell.layout = FALSE, row.labels = TRUE)
+
+# For better examples, including the use of xtable,
+# see the documentation of crosstab().
 }

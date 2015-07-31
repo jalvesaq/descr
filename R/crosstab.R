@@ -1,11 +1,15 @@
 
-crosstab <- function(dep, indep, weight = NULL, digits = 3, max.width = NA,
-                     expected = FALSE, prop.r = FALSE, prop.c = FALSE,
-                     prop.t = FALSE, prop.chisq = FALSE, chisq = FALSE,
-                     fisher = FALSE, mcnemar = FALSE, resid = FALSE,
+crosstab <- function(dep, indep, weight = NULL,
+                     digits = list(expected = 1, prop = 3, percent = 1, others = 3),
+                     max.width = NA, expected = FALSE, prop.r = FALSE,
+                     prop.c = FALSE, prop.t = FALSE, prop.chisq = FALSE,
+                     chisq = FALSE, fisher = FALSE, mcnemar = FALSE, resid = FALSE,
                      sresid = FALSE, asresid = FALSE, missing.include = FALSE,
                      drop.levels = TRUE, format = "SPSS", cell.layout = TRUE,
-                     total.r, total.c, dnn = NULL, xlab = NULL, ylab = NULL, main = "",
+                     row.labels = !cell.layout,
+                     percent = (format == "SPSS" && !row.labels),
+                     total.r, total.c,
+                     dnn = NULL, xlab = NULL, ylab = NULL, main = "",
                      user.missing.dep, user.missing.indep,
                      plot = getOption("descr.plot"), ...)
 {
@@ -78,7 +82,8 @@ crosstab <- function(dep, indep, weight = NULL, digits = 3, max.width = NA,
                           sresid = sresid, asresid = asresid,
                           missing.include = missing.include,
                           drop.levels = drop.levels, format = format, dnn = dnn,
-                          cell.layout = cell.layout, total.r = total.r,
+                          cell.layout = cell.layout, row.labels = row.labels,
+                          percent = percent, total.r = total.r,
                           total.c = total.c, xlab = xlab, ylab = ylab)
 
     if(plot == TRUE)

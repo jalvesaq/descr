@@ -1,25 +1,25 @@
 
-xtable.CrossTable <- function(x, caption = NULL, label = NULL, align = NULL,
-                              digits = 1, display = NULL, multirow = FALSE,
-                              hline = FALSE, percent, ...)
+xtable.CrossTable <- function(x, caption = NULL, label = NULL,
+                              align = NULL, display = NULL,
+                              multirow = FALSE, hline = FALSE, ...)
 {
+    argl <- list(...)
+    for(n in names(argl))
+        if(n %in% names(x))
+            x[[n]] <- argl[[n]]
+
     nr <- nrow(x$tab)
     nc <- ncol(x$t)
-    x$digits <- digits
 
-    if(missing(percent)){
-        if(multirow || hline)
-            percent <- TRUE
-        else
-            percent <- FALSE
-    }
-    if(percent){
-        nt <- CreateNewTab(x, prct = TRUE)
-        for(i in 1:nrow(nt))
-            for(j in 1:ncol(nt))
-                nt[i, j] <- sub("%", "\\\\%", nt[i, j])
-    } else {
-        nt <- CreateNewTab(x)
+    nt <- CreateNewTab(x, ...)
+    # Scape the % symbol if the user probably will not sanitize the text
+    if(multirow || hline){
+        if(x$percent)
+            for(i in 1:nrow(nt))
+                for(j in 1:ncol(nt))
+                    nt[i, j] <- sub("%", "\\\\%", nt[i, j])
+        if(x$row.labels)
+            rownames(nt) <- sub("%",  "\\\\%", rownames(nt))
     }
 
     # Add rownames as first column
@@ -35,14 +35,15 @@ xtable.CrossTable <- function(x, caption = NULL, label = NULL, align = NULL,
         nrnt <- nrow(nt)
 
     n <- nrnt / nr
-    idxm <- seq(1, nrnt, n)
-    idxh <- seq(n+1, nrnt+1, n)
-    idxh <- idxh[idxh < nrow(nt)] # necessary when total.c = FALSE
-
-    if(multirow)
+    if(multirow && !x$row.labels){
+        idxm <- seq(1, nrnt, n)
         nt[idxm, 1] <- paste("\\multirow{", n, "}{*}{", nt[idxm, 1], "}", sep = "")
-    if(hline)
+    }
+    if(hline){
+        idxh <- seq(n+1, nrnt+1, n)
+        idxh <- idxh[idxh < nrow(nt)] # necessary when total.c = FALSE
         nt[idxh, 1] <- paste("\\hline\n", nt[idxh, 1], sep = "")
+    }
 
     if(multirow){
         idxc <- 1:ncol(x$tab) + 1
