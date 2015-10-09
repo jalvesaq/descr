@@ -119,13 +119,13 @@ CreateNewTab <- function(x, ...)
                               x$percent)
     }
 
-    if(!is.na(x$resid) && x$resid == TRUE && x$expected == TRUE){
+    if(!is.na(x$resid) && x$resid == TRUE){
         xx <- x$tab - x$CST$expected
         xx <- format(round(xx, digits = dgts$others), trim = TRUE, ...)
         nt <- appendlines(nt, xx, gettext("residual", domain = "R-descr"))
     }
 
-    if(!is.na(x$sresid) && x$sresid == TRUE && x$expected == TRUE){
+    if(!is.na(x$sresid) && x$sresid == TRUE){
         xx <- x$CST$residual
         xx <- format(round(xx, digits = dgts$others), trim = TRUE, ...)
         nt <- appendlines(nt, xx, gettext("std. res.", domain = "R-descr"))
