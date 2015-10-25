@@ -98,9 +98,23 @@ ct <- crosstab(opinion, educ, weight,
 ct
 plot(ct, inv.y = TRUE)
 
+# Get the table of observed values as an object of class "table"
+tab <- ct$tab
+class(tab)
+tab
+
+# Get the complete cross table as "matrix"
+complete.tab <- descr:::CreateNewTab(ct)
+class(complete.tab)
+complete.tab
+
+## xtable support
 library(xtable)
+
+# Print ugly table
 print(xtable(ct))
 
+# Print pretty table
 # Add to the preamble of your Rnoweb document:
 # \usepackage{booktabs}
 # \usepackage{multirow}
