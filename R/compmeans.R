@@ -121,7 +121,7 @@ compmeans <- function(x, f, w, sort = FALSE, maxlevels = 60,
     colnames(tab) <- c(gettext("Mean", domain = "R-descr"),
                        gettext("N", domain = "R-descr"),
                        gettext("Std. Dev.", domain = "R-descr"))
-    if (sort) {
+    if(sort){
         len <- length(xmean)
         len1 <- len - 1
         ordl <- order(xmean[1:len1]) # Do not sort the "Total"
@@ -139,13 +139,13 @@ compmeans <- function(x, f, w, sort = FALSE, maxlevels = 60,
         attr(tab, "width") <- width
     else
         attr(tab, "width") <- rep(1, length(width))
-    class(tab) <- c("meanscomp", "matrix")
 
     # Add attributes to plot the object:
     attr(tab, "x") <- x
     attr(tab, "f") <- f
     if(!missing(w))
         attr(tab, "wt") <- wt
+    class(tab) <- c("meanscomp", "matrix")
 
     if(plot)
         plot.meanscomp(tab, ...)
