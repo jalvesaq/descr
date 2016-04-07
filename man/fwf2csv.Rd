@@ -32,10 +32,9 @@ fwf2csv(fwffile, csvfile, names, begin, end,
   characters without quotes around the strings.
   
   This function is useful if you have a very big fixed width formated file to
-  read and \link[utils]{read.fwf} would be too slow. The C function that does
-  the real job allocates a buffer of 32765 bytes to read the lines of the
-  fixed width formated file, but it will allocate a larger buffer if there is
-  at least one column to be read near the end of the line.
+  read and \link[utils]{read.fwf} would be too slow. The function that does
+  the real job is very fast because it is written in C, and the use of RAM is
+  minimum.
 
 }
 
