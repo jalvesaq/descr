@@ -16,7 +16,7 @@ crosstab <- function(dep, indep, weight = NULL,
     if(missing(dep))
         stop("The argument 'dep' (dependent variable) is missing.")
     if(missing(indep))
-        stop("The 'indep' (independent variable) is missing.")
+        stop("The 'indep' (independent variable) is missing. Please, consider using either CrossTable() or freq().")
 
     if(is.null(dnn))
         dnn <- c(deparse(substitute(dep)), deparse(substitute(indep)))

@@ -71,6 +71,10 @@ crosstab(dep, indep, weight = NULL,
   \code{\link[graphics]{mosaicplot}}. Note that the gray scale colors used by
   default in the mosaic plot do not have any statistical meaning. The colors
   are used only to ease the plot interpretation.
+
+  Differently from \code{\link{CrossTable}}, this function requires both
+  \code{dep} and \code{indep} arguments. If you want an univariate tabulation,
+  you should try either \code{\link{CrossTable}} or \code{\link{freq}}.
 }
 
 \author{Jakson A. Aquino \email{jalvesaq@gmail.com}}
