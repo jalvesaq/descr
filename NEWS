@@ -1,4 +1,8 @@
-Version 1.1.2 (2015-08-01)
+Version 1.1.3 (2016-05-11)
+
+ - Minor bug fixes.
+
+Version 1.1.2 (2015-08-02)
 
  - New arguments for CrossTable and crosstab:
    row.labels, percent, total.c and total.r.
