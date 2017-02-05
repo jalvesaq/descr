@@ -9,7 +9,7 @@ crosstab <- function(dep, indep, weight = NULL,
                      row.labels = !cell.layout,
                      percent = (format == "SPSS" && !row.labels),
                      total.r, total.c,
-                     dnn = NULL, xlab = NULL, ylab = NULL, main = "",
+                     dnn = "label", xlab = NULL, ylab = NULL, main = "",
                      user.missing.dep, user.missing.indep,
                      plot = getOption("descr.plot"), ...)
 {
@@ -18,6 +18,14 @@ crosstab <- function(dep, indep, weight = NULL,
     if(missing(indep))
         stop("The 'indep' (independent variable) is missing. Please, consider using either CrossTable() or freq().")
 
+    if(length(dnn) == 1 && dnn == "label"){
+        dimn <- c(deparse(substitute(dep)), deparse(substitute(indep)))
+        if(!is.null(attr(dep, "label")))
+            dimn[1] <- attr(dep, "label")
+        if(!is.null(attr(indep, "label")))
+            dimn[2] <- attr(indep, "label")
+        dnn <- dimn
+    }
     if(is.null(dnn))
         dnn <- c(deparse(substitute(dep)), deparse(substitute(indep)))
 

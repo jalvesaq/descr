@@ -15,7 +15,7 @@ crosstab(dep, indep, weight = NULL,
          missing.include = FALSE, drop.levels = TRUE, format = "SPSS",
          cell.layout = TRUE, row.labels = !cell.layout,
          percent = (format == "SPSS" && !row.labels),
-         total.r, total.c, dnn = NULL, xlab = NULL,
+         total.r, total.c, dnn = "label", xlab = NULL,
          ylab = NULL, main = "", user.missing.dep, user.missing.indep,
          plot = getOption("descr.plot"), \dots)
 }
@@ -45,7 +45,9 @@ crosstab(dep, indep, weight = NULL,
   \item{percent}{See \code{\link{CrossTable}}.}
   \item{total.r}{See \code{\link{CrossTable}}.}
   \item{total.c}{See \code{\link{CrossTable}}.}
-  \item{dnn}{See \code{\link{CrossTable}}.}
+  \item{dnn}{See \code{\link{CrossTable}}. If \code{dnn = "label"}, then the
+    \samp{"label"} attribute of \samp{dep} and \samp{indep} will be used as
+    the dimension names.}
   \item{xlab}{See \code{\link[graphics]{plot.default}}.}
   \item{ylab}{See \code{\link[graphics]{plot.default}}.}
   \item{main}{An overall title for the plot (see
