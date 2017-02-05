@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: descr 1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-01 15:19-0400\n"
-"PO-Revision-Date: 2015-07-30 23:40-0400\n"
+"POT-Creation-Date: 2017-02-05 09:25-0300\n"
+"PO-Revision-Date: 2017-02-05 09:25-0300\n"
 "Last-Translator: Jakson Aquino <jalvesaq@gmail.com>\n"
 "Language-Team: pt <pt@li.org>\n"
 "Language: pt_BR\n"
@@ -85,11 +85,11 @@ msgstr "x e y devem ter o mesmo comprimento"
 msgid "dnn must have length of 2, one element for each table dimension"
 msgstr "dnn deve ter comprimento 2, um elemento para dimensão da tabela"
 
-#: descr/R/CrossTable.R:379 descr/R/crosstab.R:64
+#: descr/R/CrossTable.R:379 descr/R/crosstab.R:67
 msgid "total.r must be logical"
 msgstr "total.r deve ser de tipo 'logical'"
 
-#: descr/R/CrossTable.R:385 descr/R/crosstab.R:70
+#: descr/R/CrossTable.R:385 descr/R/crosstab.R:73
 msgid "total.c must be logical"
 msgstr "total.c deve ser de tipo 'logical'"
 
@@ -309,8 +309,12 @@ msgid "The argument 'dep' (dependent variable) is missing."
 msgstr "O argumento 'dep' (variável dependente) deve ser fornecido."
 
 #: descr/R/crosstab.R:19
-msgid "The 'indep' (independent variable) is missing."
-msgstr "O argumento 'indep' (variável independente) deve ser fornecido."
+msgid ""
+"The 'indep' (independent variable) is missing. Please, consider using either "
+"CrossTable() or freq()."
+msgstr ""
+"O argumento 'indep' (variável independente) não foi fornecido. Considere "
+"usar CrossTable() ou freq()."
 
 #: descr/R/dataframe2txt.R:115
 msgid "Repeated labels in "
@@ -397,8 +401,8 @@ msgstr "A class de rfile deve ser character."
 msgid "dfname must be of class character."
 msgstr "A class de dfname deve ser character."
 
-#~ msgid "Total Observations in Table:"
-#~ msgstr "Total de observações na tabela:"
-
 #~ msgid "p ="
 #~ msgstr "p ="
+
+#~ msgid "Total Observations in Table:"
+#~ msgstr "Total de observações na tabela:"

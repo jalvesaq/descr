@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-01 15:19-0400\n"
+"POT-Creation-Date: 2017-02-05 09:25-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,11 +86,11 @@ msgstr ""
 msgid "dnn must have length of 2, one element for each table dimension"
 msgstr ""
 
-#: descr/R/CrossTable.R:379 descr/R/crosstab.R:64
+#: descr/R/CrossTable.R:379 descr/R/crosstab.R:67
 msgid "total.r must be logical"
 msgstr ""
 
-#: descr/R/CrossTable.R:385 descr/R/crosstab.R:70
+#: descr/R/CrossTable.R:385 descr/R/crosstab.R:73
 msgid "total.c must be logical"
 msgstr ""
 
@@ -309,7 +309,9 @@ msgid "The argument 'dep' (dependent variable) is missing."
 msgstr ""
 
 #: descr/R/crosstab.R:19
-msgid "The 'indep' (independent variable) is missing."
+msgid ""
+"The 'indep' (independent variable) is missing. Please, consider using either "
+"CrossTable() or freq()."
 msgstr ""
 
 #: descr/R/dataframe2txt.R:115
