@@ -56,24 +56,28 @@ data.frame2txt <- function(x, datafile = "x.txt",
   cat("  /DELIMITERS=\"\\t\"\n")
   cat("  /ARRANGEMENT=DELIMITED\n")
   cat("  /FIRSTCASE=2\n")
-  cat("  /IMPORTCASE=ALL\n")
   cat("  /VARIABLES=\n")
   for(column in x.names){
     cat("  ", column, " ", sep = "")
     xx <- x[[column]]
-    if(is.character(xx)) cat("A", max(nchar(xx)), "\n", sep = "")
-    else if(is.factor(xx)){
-      nlevs <- length(levels(xx))
-      if(nlevs < 10) cat("F1.0\n")
-      else if(nlevs > 9 && nlevs < 100) cat("F2.0\n")
-      else if(nlevs > 99) cat("F3.0\n")
-    } else if(is.numeric(xx)){
-        if(sum(grepl("(chron|dates|times)", class(xx))) > 0){
-            cat("A", max(nchar(as.character(xx))), "\n", sep = "")
+    if(is.character(xx)){
+        cat("A", max(nchar(xx), na.rm = TRUE), "\n", sep = "")
+    } else {
+        if(is.factor(xx)){
+            nlevs <- length(levels(xx))
+            if(nlevs < 10) cat("F1.0\n")
+            else if(nlevs > 9 && nlevs < 100) cat("F2.0\n")
+            else if(nlevs > 99) cat("F3.0\n")
+        } else if(is.numeric(xx)){
+            if(sum(grepl("(chron|dates|times)", class(xx))) > 0){
+                cat("A", max(nchar(as.character(xx)), na.rm = TRUE), "\n", sep = "")
+            } else {
+                cat("F", max(nchar(as.character(xx)), na.rm = TRUE), ".0\n", sep = "")
+            }
         } else {
-            cat("F", max(nchar(as.character(xx))), ".0\n", sep = "")
+            cat("error: undefined type\n")
         }
-    } else cat("error: undefined type\n")
+    }
   }
   cat("  .\n")
   cat("EXECUTE.\n\n")
