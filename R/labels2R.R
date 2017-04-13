@@ -24,6 +24,10 @@ labels2R <- function(lfile, rfile, dfname = "b", echo = FALSE)
         unlink(outfile)
     }
     input <- readLines(infile)
+
+    # The last line must be empty
+    input <- c(input, "")
+
     nlines <- length(input)
     lnum <- 1
     while (lnum <= nlines) {
