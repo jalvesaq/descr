@@ -291,17 +291,13 @@ CrossTable <- function (x, y,
         tab <- table(x, y)
     }
 
-    ## Create Titles for Table From Vector Names
-    ## At least 2 x 2 table only (for now)
-    if (all(dim(tab) >= 2)) {
-        if (!is.null(dnn)) {
-            if (length(dnn) != 2)
-                stop("dnn must have length of 2, one element for each table dimension")
-            else {
-                RowData <- dnn[1]
-                ColData <- dnn[2]
-            }
-        }
+    ## Check dnn, and use it
+    if(!is.null(dnn)){
+        if(all(dim(tab) >= 2) && length(dnn) != 2)
+            stop("dnn must have length of 2, one element for each table dimension")
+        RowData <- dnn[1]
+        if(length(dnn) > 1)
+            ColData <- dnn[2]
     }
 
     ## if tab is not at least a 2 x 2, do not do stats
