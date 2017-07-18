@@ -61,7 +61,10 @@ data.frame2txt <- function(x, datafile = "x.txt",
     cat("  ", column, " ", sep = "")
     xx <- x[[column]]
     if(is.character(xx)){
-        cat("A", max(nchar(xx), na.rm = TRUE), "\n", sep = "")
+        mnc <- max(nchar(xx), na.rm = TRUE)
+        if(mnc == 0)
+            mnc <- 1
+        cat("A", mnc, "\n", sep = "")
     } else {
         if(is.factor(xx)){
             nlevs <- length(levels(xx))
