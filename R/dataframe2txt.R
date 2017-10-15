@@ -66,6 +66,8 @@ data.frame2txt <- function(x, datafile = "x.txt",
             mnc <- 1
         cat("A", mnc, "\n", sep = "")
     } else {
+        if(is.logical(xx))
+            xx <- as.numeric(xx)
         if(is.factor(xx)){
             nlevs <- length(levels(xx))
             if(nlevs < 10) cat("F1.0\n")
@@ -138,7 +140,8 @@ data.frame2txt <- function(x, datafile = "x.txt",
   sink()
 
   for(column in x.names)
-    if(is.factor(x[[column]])) x[[column]] <- as.numeric(x[[column]])
+    if(is.factor(x[[column]]) || is.logical(x[[column]]))
+        x[[column]] <- as.numeric(x[[column]])
 
   write.table(x, file = datafile, quote = FALSE, sep = "\t", col.names = TRUE,
     row.names = FALSE, na = "")

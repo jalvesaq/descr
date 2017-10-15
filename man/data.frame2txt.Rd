@@ -25,6 +25,8 @@ data.frame2txt(x, datafile = "x.txt", r.codefile = "x.R",
   The return value of \code{\link[utils]{write.table}}.
 }
 
+\details{Logical vectors are converted into numeric before being saved.}
+
 \author{Jakson A. Aquino \email{jalvesaq@gmail.com}}
 
 \examples{
