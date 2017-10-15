@@ -20,6 +20,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <R_ext/Rdynload.h>
+#include <R_ext/Visibility.h>
+
 void realfwf2csv(char **fwffile, char **csvfile, char **names, int *begin,
         int *end, int *ncols, int *verbose){
 
@@ -148,3 +151,14 @@ void realfwf2csv(char **fwffile, char **csvfile, char **names, int *begin,
                     nskipped, fwffile[0]);
 }
 
+static const R_CMethodDef CEntries[] = {
+    {"realfwf2csv",  (DL_FUNC) &realfwf2csv, 7},
+    {NULL, NULL, 0}
+};
+
+void attribute_visible R_init_descr(DllInfo *info)
+{
+    R_registerRoutines(info, CEntries, NULL, NULL, NULL);
+    R_useDynamicSymbols(info, FALSE);
+    R_forceSymbols(info, TRUE);
+}

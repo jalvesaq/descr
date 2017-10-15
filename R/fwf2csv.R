@@ -19,7 +19,8 @@ fwf2csv <- function(fwffile, csvfile, names, begin, end, verbose = getOption("ve
 	as.character(names),
 	as.integer(begin),
 	as.integer(end),
-	ncols, as.integer(verbose), PACKAGE="descr")
+	ncols,
+        as.integer(verbose))
 
     return (invisible(NULL))
 }
