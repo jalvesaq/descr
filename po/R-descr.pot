@@ -1,399 +1,296 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-05 09:25-0300\n"
+"Project-Id-Version: descr 1.1.4\n"
+"POT-Creation-Date: 2017-10-15 10:11\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: descr/R/CrossTable.R:39 descr/R/CrossTable.R:141 descr/R/compmeans.R:119
-#: descr/R/forODFTable.R:71 descr/R/forODFTable.R:72 descr/R/freq.R:75
+
 msgid "Total"
 msgstr ""
 
-#: descr/R/CrossTable.R:82
 msgid "expected"
 msgstr ""
 
-#: descr/R/CrossTable.R:88
 msgid "chisq"
 msgstr ""
 
-#: descr/R/CrossTable.R:95
 msgid "row %"
 msgstr ""
 
-#: descr/R/CrossTable.R:98
 msgid "row prop."
 msgstr ""
 
-#: descr/R/CrossTable.R:105
 msgid "col %"
 msgstr ""
 
-#: descr/R/CrossTable.R:108
 msgid "col prop."
 msgstr ""
 
-#: descr/R/CrossTable.R:115
 msgid "table %"
 msgstr ""
 
-#: descr/R/CrossTable.R:118
 msgid "table prop."
 msgstr ""
 
-#: descr/R/CrossTable.R:125
 msgid "residual"
 msgstr ""
 
-#: descr/R/CrossTable.R:131
 msgid "std. res."
 msgstr ""
 
-#: descr/R/CrossTable.R:136
 msgid "adj. std. res."
 msgstr ""
 
-#: descr/R/CrossTable.R:232
 msgid "max.width must be >= 1"
 msgstr ""
 
-#: descr/R/CrossTable.R:252
 msgid "all entries of x must be nonnegative and finite"
 msgstr ""
 
-#: descr/R/CrossTable.R:276
 msgid "x must be either a vector or a 2 dimensional matrix, if y is not given"
 msgstr ""
 
-#: descr/R/CrossTable.R:288
 msgid "x and y must have the same length"
 msgstr ""
 
-#: descr/R/CrossTable.R:299
 msgid "dnn must have length of 2, one element for each table dimension"
 msgstr ""
 
-#: descr/R/CrossTable.R:379 descr/R/crosstab.R:67
 msgid "total.r must be logical"
 msgstr ""
 
-#: descr/R/CrossTable.R:385 descr/R/crosstab.R:73
 msgid "total.c must be logical"
 msgstr ""
 
-#: descr/R/CrossTable.R:470
 msgid "unknown format"
 msgstr ""
 
-#: descr/R/CrossTable.R:481
 msgid "Cell Contents"
 msgstr ""
 
-#: descr/R/CrossTable.R:484
 msgid "|                       N |"
 msgstr ""
 
-#: descr/R/CrossTable.R:486
 msgid "|              Expected N |"
 msgstr ""
 
-#: descr/R/CrossTable.R:488 descr/R/CrossTable.R:500
 msgid "| Chi-square contribution |"
 msgstr ""
 
-#: descr/R/CrossTable.R:490
 msgid "|           N / Row Total |"
 msgstr ""
 
-#: descr/R/CrossTable.R:492
 msgid "|           N / Col Total |"
 msgstr ""
 
-#: descr/R/CrossTable.R:494
 msgid "|         N / Table Total |"
 msgstr ""
 
-#: descr/R/CrossTable.R:496
 msgid "|                   Count |"
 msgstr ""
 
-#: descr/R/CrossTable.R:498
 msgid "|         Expected Values |"
 msgstr ""
 
-#: descr/R/CrossTable.R:502
 msgid "|             Row Percent |"
 msgstr ""
 
-#: descr/R/CrossTable.R:504
 msgid "|          Column Percent |"
 msgstr ""
 
-#: descr/R/CrossTable.R:506
 msgid "|           Total Percent |"
 msgstr ""
 
-#: descr/R/CrossTable.R:509
 msgid "|                Residual |"
 msgstr ""
 
-#: descr/R/CrossTable.R:511
 msgid "|            Std Residual |"
 msgstr ""
 
-#: descr/R/CrossTable.R:513
 msgid "|           Adj Std Resid |"
 msgstr ""
 
-#: descr/R/CrossTable.R:573
 msgid "Number of Missing Observations:"
 msgstr ""
 
-#: descr/R/CrossTable.R:660
 msgid "Statistics for All Table Factors"
 msgstr ""
 
-#: descr/R/CrossTable.R:667 descr/R/CrossTable.R:677 descr/R/CrossTable.R:691
-#: descr/R/CrossTable.R:701
 msgid "Chi^2 ="
 msgstr ""
 
-#: descr/R/CrossTable.R:668 descr/R/CrossTable.R:678 descr/R/CrossTable.R:692
-#: descr/R/CrossTable.R:702
 msgid "d.f. ="
 msgstr ""
 
-#: descr/R/CrossTable.R:712
 msgid "Fisher's Exact Test for Count Data"
 msgstr ""
 
-#: descr/R/CrossTable.R:717
 msgid "Sample estimate odds ratio:"
 msgstr ""
 
-#: descr/R/CrossTable.R:719
 msgid "Alternative hypothesis: true odds ratio is not equal to 1"
 msgstr ""
 
-#: descr/R/CrossTable.R:724 descr/R/CrossTable.R:731 descr/R/CrossTable.R:738
-msgid "95% confidence interval:"
+msgid "95%s confidence interval:"
 msgstr ""
 
-#: descr/R/CrossTable.R:726
 msgid "Alternative hypothesis: true odds ratio is less than 1"
 msgstr ""
 
-#: descr/R/CrossTable.R:733
+msgid "%"
+msgstr ""
+
 msgid "Alternative hypothesis: true odds ratio is greater than 1"
 msgstr ""
 
-#: descr/R/CrossTable.R:742
 msgid "Alternative hypothesis: two.sided"
 msgstr ""
 
-#: descr/R/CrossTable.R:755
 msgid "Minimum expected frequency:"
 msgstr ""
 
-#: descr/R/CrossTable.R:760
 msgid "Cells with Expected Frequency < 5:"
 msgstr ""
 
-#: descr/R/CrossTable.R:761
 msgid "of"
 msgstr ""
 
-#: descr/R/bwplotstats.R:12 descr/R/bwplotstats.R:43
 msgid "'x' must be a numeric vector"
 msgstr ""
 
-#: descr/R/bwplotstats.R:16 descr/R/bwplotstats.R:55
 msgid "'weights' must be a numeric vector"
 msgstr ""
 
-#: descr/R/bwplotstats.R:18 descr/R/bwplotstats.R:57
 msgid "'weights' must have the same length as 'x'"
 msgstr ""
 
-#: descr/R/bwplotstats.R:19
 msgid "missing or infinite weights"
 msgstr ""
 
-#: descr/R/bwplotstats.R:22
 msgid "'probs' must be a numeric vector with values in [0,1]"
 msgstr ""
 
-#: descr/R/bwplotstats.R:26
 msgid "missing values and NaN's not allowed if 'na.rm' is not TRUE"
 msgstr ""
 
-#: descr/R/bwplotstats.R:45
 msgid "'coef' must be a single non-negative number"
 msgstr ""
 
-#: descr/R/compmeans.R:25 descr/R/compmeans.R:72
 msgid "and"
 msgstr ""
 
-#: descr/R/compmeans.R:26
 msgid "have different lengths"
 msgstr ""
 
-#: descr/R/compmeans.R:35
 msgid "was converted into a factor, but the new variable had too many levels"
 msgstr ""
 
-#: descr/R/compmeans.R:40 descr/R/compmeans.R:84
 msgid "Warning:"
 msgstr ""
 
-#: descr/R/compmeans.R:41
 msgid "was converted into factor!"
 msgstr ""
 
-#: descr/R/compmeans.R:73
 msgid "have different lengths."
 msgstr ""
 
-#: descr/R/compmeans.R:85
 msgid "was converted from factor into numeric!"
 msgstr ""
 
-#: descr/R/compmeans.R:97
 msgid "rows with missing values dropped"
 msgstr ""
 
-#: descr/R/compmeans.R:121
 msgid "Mean"
 msgstr ""
 
-#: descr/R/compmeans.R:122
 msgid "N"
 msgstr ""
 
-#: descr/R/compmeans.R:123
 msgid "Std. Dev."
 msgstr ""
 
-#: descr/R/compmeans.R:167
 msgid "Mean value of"
 msgstr ""
 
-#: descr/R/compmeans.R:168
 msgid "according to"
 msgstr ""
 
-#: descr/R/compmeans.R:228
 msgid "f is not a factor."
 msgstr ""
 
-#: descr/R/compmeans.R:230
 msgid "Number of levels of \"f\" is higher than maxlevels."
 msgstr ""
 
-#: descr/R/crosstab.R:17
 msgid "The argument 'dep' (dependent variable) is missing."
 msgstr ""
 
-#: descr/R/crosstab.R:19
-msgid ""
-"The 'indep' (independent variable) is missing. Please, consider using either "
-"CrossTable() or freq()."
+msgid "The 'indep' (independent variable) is missing. Please, consider using either CrossTable() or freq()."
 msgstr ""
 
-#: descr/R/dataframe2txt.R:115
-msgid "Repeated labels in "
+msgid "Repeated labels in"
 msgstr ""
 
-#: descr/R/descr.R:87
 msgid "Chi2"
 msgstr ""
 
-#: descr/R/descr.R:88
 msgid "Df"
 msgstr ""
 
-#: descr/R/descr.R:89
 msgid "Sig."
 msgstr ""
 
-#: descr/R/descr.R:90
 msgid "Cox and Snell Index"
 msgstr ""
 
-#: descr/R/descr.R:91
 msgid "Nagelkerke Index"
 msgstr ""
 
-#: descr/R/descr.R:92
 msgid "McFadden's R2"
 msgstr ""
 
-#: descr/R/descr.R:100
 msgid "No logistic regression model, no pseudo R^2 computed."
 msgstr ""
 
-#: descr/R/forODFTable.R:5
 msgid "'%s' should be of class 'CrossTable'."
 msgstr ""
 
-#: descr/R/freq.R:34
 msgid "Frequency"
 msgstr ""
 
-#: descr/R/freq.R:35
 msgid "Percent"
 msgstr ""
 
-#: descr/R/freq.R:54
 msgid "Valid Percent"
 msgstr ""
 
-#: descr/R/freq.R:66
 msgid "Cum Percent"
 msgstr ""
 
-#: descr/R/freq.R:126
 msgid "Invalid y.axis: '"
 msgstr ""
 
-#: descr/R/fwf2csv.R:7
 msgid "The vectors \"names\", \"begin\" and \"end\" must have the same length."
 msgstr ""
 
-#: descr/R/fwf2csv.R:9 descr/R/labels2R.R:19
 msgid "File not found:"
 msgstr ""
 
-#: descr/R/labels2R.R:5
 msgid "The name of file with labels is required."
 msgstr ""
 
-#: descr/R/labels2R.R:8
 msgid "The name of file with R code to is required."
 msgstr ""
 
-#: descr/R/labels2R.R:11
 msgid "lfile must be of class character."
 msgstr ""
 
-#: descr/R/labels2R.R:13
 msgid "rfile must be of class character."
 msgstr ""
 
-#: descr/R/labels2R.R:15
 msgid "dfname must be of class character."
 msgstr ""

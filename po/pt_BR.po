@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: descr 1.1\n"
+"Project-Id-Version: descr 1.1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-13 14:42-0400\n"
-"PO-Revision-Date: 2015-04-13 14:43-0400\n"
+"POT-Creation-Date: 2017-10-15 12:10-0300\n"
+"PO-Revision-Date: 2017-10-15 12:12-0300\n"
 "Last-Translator: Jakson Aquino <jalvesaq@gmail.com>\n"
 "Language-Team: pt <pt@li.org>\n"
 "Language: pt_BR\n"
@@ -16,37 +16,37 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: descr/src/descr.c:51 descr/src/descr.c:58
+#: descr.c:54 descr.c:61
 #, c-format
 msgid "Error: could not allocate memory (%d bytes)\n"
 msgstr "Erro: não foi possível alocar memória (%d bytes)\n"
 
-#: descr/src/descr.c:64
+#: descr.c:67
 #, c-format
 msgid "Error: could not read file \"%s\".\n"
 msgstr "Erro: não foi possível ler o arquivo \"%s\".\n"
 
-#: descr/src/descr.c:69
+#: descr.c:72
 #, c-format
 msgid "Error: could not write file \"%s\".\n"
 msgstr "Erro: não foi possível gravar o arquivo \"%s\".\n"
 
-#: descr/src/descr.c:98
+#: descr.c:101
 #, c-format
 msgid "Error: line %d has only %d characters.\n"
 msgstr "Erro: linha %d tinha somente %d caracteres.\n"
 
-#: descr/src/descr.c:142
+#: descr.c:145
 #, c-format
 msgid "%d lines written in \"%s\".\n"
 msgstr "%d linhas gravadas em \"%s\".\n"
 
-#: descr/src/descr.c:144
+#: descr.c:147
 #, c-format
 msgid "One line from \"%s\" skipped because shorter than 3 characters.\n"
 msgstr "Uma linha de \"%s\" não lida porque menor do que 3 caracteres.\n"
 
-#: descr/src/descr.c:147
+#: descr.c:150
 #, c-format
 msgid "%d lines from \"%s\" skipped because shorter than 3 characters.\n"
 msgstr "%d linhas de \"%s\" não lidas porque menores do que 3 caracteres.\n"

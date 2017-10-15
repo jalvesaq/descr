@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the descr package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: descr 1.1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-05 09:25-0300\n"
+"POT-Creation-Date: 2017-10-15 12:10-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,37 +17,37 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: descr/src/descr.c:51 descr/src/descr.c:58
+#: descr.c:54 descr.c:61
 #, c-format
 msgid "Error: could not allocate memory (%d bytes)\n"
 msgstr ""
 
-#: descr/src/descr.c:64
+#: descr.c:67
 #, c-format
 msgid "Error: could not read file \"%s\".\n"
 msgstr ""
 
-#: descr/src/descr.c:69
+#: descr.c:72
 #, c-format
 msgid "Error: could not write file \"%s\".\n"
 msgstr ""
 
-#: descr/src/descr.c:98
+#: descr.c:101
 #, c-format
 msgid "Error: line %d has only %d characters.\n"
 msgstr ""
 
-#: descr/src/descr.c:142
+#: descr.c:145
 #, c-format
 msgid "%d lines written in \"%s\".\n"
 msgstr ""
 
-#: descr/src/descr.c:144
+#: descr.c:147
 #, c-format
 msgid "One line from \"%s\" skipped because shorter than 3 characters.\n"
 msgstr ""
 
-#: descr/src/descr.c:147
+#: descr.c:150
 #, c-format
 msgid "%d lines from \"%s\" skipped because shorter than 3 characters.\n"
 msgstr ""

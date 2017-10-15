@@ -717,21 +717,21 @@ print.CrossTable <- function(x, ...)
             fp <- format.pval(FTt$p.value, digits = dgts$others)
             pv <- paste("p", if(substr(fp, 1L, 1L) == "<") fp else paste("=", fp))
             cat(pv, "\n")
-            cat(gettext("95% confidence interval:", domain = "R-descr"), FTt$conf.int, "\n\n")
+            cat(gettextf("95%s confidence interval:", "%", domain = "R-descr"), FTt$conf.int, "\n\n")
 
             cat(gettext("Alternative hypothesis: true odds ratio is less than 1",
                     domain = "R-descr"), "\n")
             fp <- format.pval(FTl$p.value, digits = dgts$others)
             pv <- paste("p", if(substr(fp, 1L, 1L) == "<") fp else paste("=", fp))
             cat(pv, "\n")
-            cat(gettext("95% confidence interval:", domain = "R-descr"), FTl$conf.int, "\n\n")
+            cat(gettext("95%s confidence interval:", "%", domain = "R-descr"), FTl$conf.int, "\n\n")
 
             cat(gettext("Alternative hypothesis: true odds ratio is greater than 1",
                     domain = "R-descr"), "\n")
             fp <- format.pval(FTg$p.value, digits = dgts$others)
             pv <- paste("p", if(substr(fp, 1L, 1L) == "<") fp else paste("=", fp))
             cat(pv, "\n")
-            cat(gettext("95% confidence interval:", domain = "R-descr"), FTg$conf.int, "\n\n")
+            cat(gettext("95%s confidence interval:", "%", domain = "R-descr"), FTg$conf.int, "\n\n")
         }
         else
         {
