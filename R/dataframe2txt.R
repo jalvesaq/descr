@@ -22,7 +22,6 @@ data.frame2txt <- function(x, datafile = "x.txt",
       if(n.levels > 1) cat(", ")
       i <- 2
       len <- 2
-      n.levels1 <- n.levels - 1
       while(i < n.levels){
 	len <- len + nchar(xx.levels[i]) + 4
 	if(len > 80){
