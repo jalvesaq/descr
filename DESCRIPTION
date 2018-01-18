@@ -1,12 +1,11 @@
 Package: descr
-Version: 1.1.3
-Date: 2016-05-11
+Version: 1.1.4
+Date: 2018-01-18
 Title: Descriptive Statistics
 Author: Jakson Aquino. Includes R source code and/or documentation
         written by Dirk Enzmann, Marc Schwartz, Nitin Jain, and Stefan
         Kraft
 Maintainer: Jakson Aquino <jalvesaq@gmail.com>
-Encoding: UTF-8
 Imports: xtable, utils, grDevices, graphics, stats
 Description: Weighted frequency and contingency tables of categorical
        variables and of the comparison of the mean value of a numerical
