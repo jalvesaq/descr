@@ -30,7 +30,9 @@ data.frame2txt(x, datafile = "x.txt", r.codefile = "x.R",
 \author{Jakson A. Aquino \email{jalvesaq@gmail.com}}
 
 \examples{
+\dontrun{
 data(CO2)
 data.frame2txt(CO2)
+}
 }
 
