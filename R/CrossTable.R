@@ -37,6 +37,7 @@ CreateNewTab <- function(x, ...)
     nc <- dim(x$tab)[2]
     nt <- cbind(x$tab, x$rs)
     colnames(nt)[ncol(nt)] <- gettext("Total", domain = "R-descr")
+    nt <- format(nt, scientific = FALSE)
 
     dgts <- GetDigitsList(x)
 
@@ -78,7 +79,7 @@ CreateNewTab <- function(x, ...)
 
     if(x$expected){
         xx <- x$CST$expected
-        xx <- format(round(xx, dgts$expected), trim = TRUE, ...)
+        xx <- format(round(xx, dgts$expected), scientific = FALSE, trim = TRUE, ...)
         nt <- appendlines(nt, xx, gettext("expected", domain = "R-descr"))
     }
 
@@ -121,7 +122,7 @@ CreateNewTab <- function(x, ...)
 
     if(!is.na(x$resid) && x$resid == TRUE){
         xx <- x$tab - x$CST$expected
-        xx <- format(round(xx, digits = dgts$others), trim = TRUE, ...)
+        xx <- format(round(xx, digits = dgts$others), scientific = FALSE, trim = TRUE, ...)
         nt <- appendlines(nt, xx, gettext("residual", domain = "R-descr"))
     }
 
@@ -137,7 +138,7 @@ CreateNewTab <- function(x, ...)
     }
 
     if(x$total.c){
-        nt <- rbind(nt, c(x$cs, x$gt))
+        nt <- rbind(nt, format(c(x$cs, x$gt), scientific = FALSE))
         rownames(nt)[nrow(nt)] <- gettext("Total", domain = "R-descr")
 
         # Add final row if necessary
