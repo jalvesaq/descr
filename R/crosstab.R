@@ -61,10 +61,14 @@ crosstab <- function(dep, indep, weight = NULL,
         dep <- factor(dep)
         indep <- factor(indep)
     }
-    if (is.null(weight))
+    if (is.null(weight)){
         tab <- table(dep, indep)
-    else
-        tab <- round(xtabs(weight ~ dep + indep))
+    } else {
+        if(getOption("descr.round.xtabs"))
+            tab <- round(xtabs(weight ~ dep + indep))
+        else
+            tab <- xtabs(weight ~ dep + indep)
+    }
     names(dimnames(tab)) <- dnn
 
     if(!missing(total.r)){

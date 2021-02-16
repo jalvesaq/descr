@@ -8,7 +8,8 @@
         options(descr.warn = TRUE)
     if(is.null(getOption("descr.na.replacement")))
         options(descr.na.replacement = "NA")
-
+    if(is.null(getOption("descr.round.xtabs")))
+        options(descr.round.xtabs = TRUE)
 }
 
 .onUnload <- function(libpath) {

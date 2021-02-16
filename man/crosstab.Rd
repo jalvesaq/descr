@@ -77,6 +77,12 @@ crosstab(dep, indep, weight = NULL,
   Differently from \code{\link{CrossTable}}, this function requires both
   \code{dep} and \code{indep} arguments. If you want an univariate tabulation,
   you should try either \code{\link{CrossTable}} or \code{\link{freq}}.
+
+  By default, if \code{weight} has decimals, the result of \code{xtabs} is
+  rounded before being passed to \code{\link{CrossTable}}. If you prefer that
+  the results are not rounded, add to your code:
+
+  \code{options(descr.round.xtabs = FALSE)}
 }
 
 \author{Jakson A. Aquino \email{jalvesaq@gmail.com}}
