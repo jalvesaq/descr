@@ -1,6 +1,7 @@
 
 xtable.CrossTable <- function(x, caption = NULL, label = NULL,
-                              align = NULL, display = NULL,
+                              align = NULL, digits = NULL,
+                              display = NULL, auto = FALSE,
                               multirow = FALSE, hline = FALSE, ...)
 {
     argl <- list(...)
@@ -60,7 +61,8 @@ xtable.CrossTable <- function(x, caption = NULL, label = NULL,
 
     if(is.null(align))
         align = paste0("ll", paste(rep("r", ncol(nt) - 1), collapse = ""))
-    xtable::xtable(nt, caption=caption, label=label, align=align, display=display, ...)
+    xtable::xtable(nt, caption = caption, label = label, align = align,
+                   digits = digits, display = display, auto = auto, ...)
 }
 
 xtable.freqtable <- function(x, caption = NULL, label = NULL, align = NULL,

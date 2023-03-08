@@ -1,7 +1,7 @@
 
 forODFTable <- function(x, digits = 1, ...)
 {
-    if(class(x) != "CrossTable"){
+    if (!isa(x, "CrossTable")) {
         msg <- sprintf(gettext("'%s' should be of class 'CrossTable'.",
                                domain = "R-descr"), deparse(substitute(x)))
         stop(msg)

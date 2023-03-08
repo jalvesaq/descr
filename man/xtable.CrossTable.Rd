@@ -6,8 +6,8 @@
 }
 \usage{
 \method{xtable}{CrossTable}(x, caption = NULL, label = NULL,
-       align = NULL, display = NULL,
-       multirow = FALSE, hline = FALSE, \dots)
+       align = NULL, digits = NULL, display = NULL,
+       auto = FALSE, multirow = FALSE, hline = FALSE, \dots)
 }
 
 \arguments{
@@ -16,6 +16,8 @@
   \item{label}{See \code{\link[xtable]{xtable}}.}
   \item{align}{See \code{\link[xtable]{xtable}}.}
   \item{display}{See \code{\link[xtable]{xtable}}.}
+  \item{digits}{See \code{\link[xtable]{xtable}}.}
+  \item{auto}{See \code{\link[xtable]{xtable}}.}
   \item{multirow}{A logical value indicating whether the command
     \verb{\multirow} should be added to the table. See the Details section
     below.}

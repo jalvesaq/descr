@@ -1,18 +1,22 @@
-Version 1.1.5 (2021-02-15)
+1.1.6 (2023-03-08)
+
+ - Fix new R CMD check warnings.
+
+1.1.5 (2021-02-15)
 
  - New option: descr.round.xtabs
 
  - Minor bug fixes.
 
-Version 1.1.4 (2018-01-18)
+1.1.4 (2018-01-18)
 
  - Minor bug fixes.
 
-Version 1.1.3 (2016-05-11)
+1.1.3 (2016-05-11)
 
  - Minor bug fixes.
 
-Version 1.1.2 (2015-08-02)
+1.1.2 (2015-08-02)
 
  - New arguments for CrossTable and crosstab:
    row.labels, percent, total.c and total.r.
@@ -23,15 +27,13 @@ Version 1.1.2 (2015-08-02)
 
  - Fix import notes during R CMD check --as-cran.
 
-Version 1.1.1 (2015-05-06)
---------------------------
+1.1.1 (2015-05-06)
 
   - Bug fixes in forODFTable() and xtable.CrossTable().
 
-Version 1.1 (2015-04-13)
---------------------------
+1.1 (2015-04-13)
 
-  Change:
+  - Change:
 
     - The plot.CrossTable() function now plots a mosaic graphic with rows and
       columns that mirror the output table. The x and y arguments of
@@ -39,21 +41,20 @@ Version 1.1 (2015-04-13)
       confusion with what should be xlab and ylab. The arguments
       user.missing.x and user.missing.y were also renamed.
 
-  Bug fix:
+  - Bug fix:
 
     - Use format.pval() to print p-value in print.CrossTable().
 
-Version 1.0.4 (2014-11-04)
---------------------------
+1.0.4 (2014-11-04)
 
-  Bug fixes:
+  - Bug fixes:
 
     - R/labels2R.R: Accept negative values.
 
     - R/xtable.R: Add row and column total proportions to xtable (thanks to
       Johannes Herrmann for reporting the bug).
 
-  Changes:
+  - Changes:
 
     - New argument for compmeans: missing.include (thanks to Olivier Armand
       for reporting the issue that led to this change).
@@ -62,10 +63,9 @@ Version 1.0.4 (2014-11-04)
 
     - New option: descr.na.replacement.
 
-Version 1.0.3 (2014-08-01)
---------------------------
+1.0.3 (2014-08-01)
 
-  Bug fixes:
+  - Bug fixes:
 
     - R/labels2R.R: Avoid infinite loop.
 
@@ -73,17 +73,16 @@ Version 1.0.3 (2014-08-01)
 
     - src/descr.c: Read up to 32765 characters from input lines.
 
-Version 1.0.2 (2013-11-01)
---------------------------
+1.0.2 (2013-11-01)
 
-  Bug fixes:
+  - Bug fixes:
 
     - R/xtable.R: Fix column name "Total" and deal with "$" in label names.
 
     - Allow to change the values of xlim and ylim in histkdnc(). Thanks to
       Thomas W. MacFarland for reporting the bug.
 
-  Changes:
+  - Changes:
 
     - Make CrossTable() to print residuals even if format="SAS".
 
@@ -94,10 +93,9 @@ Version 1.0.2 (2013-11-01)
 
     - News functions: data.frame2txt() and labels2R().
 
-Version 1.0.1 (2013-01-15)
---------------------------
+1.0.1 (2013-01-15)
 
-  Bug fix:
+  - Bug fix:
 
     - src/fwf2csv.c: Free no longer used allocated memory.
 
@@ -109,41 +107,37 @@ Version 1.0.1 (2013-01-15)
     - Add option to suppress warnings: "descr.warn".
 
 
-Version 1.0.0 (2012-11-18)
---------------------------
+1.0.0 (2012-11-18)
 
-  Bug fix:
+  - Bug fix:
 
     - src/fwf2csv.c: Don't cause stack smashing if field is wider than 255
       characters (thanks to Anthony Damico for reporting the bug).
 
-Version 0.9.9 (2012-09-24)
---------------------------
+0.9.9 (2012-09-24)
 
-  Bug fix:
+  - Bug fix:
 
     - Sort boxplots widths in compmeans if sort = TRUE.
 
-Version 0.9.8 (2012-08-06)
---------------------------
+0.9.8 (2012-08-06)
 
-  Changes:
+  - Changes:
 
     - New argument for CrossTable(): cell.layout.
 
     - No longer produce weighted box plots.
 
-Version 0.9.7 (2011-12-12)
---------------------------
+0.9.7 (2011-12-12)
 
-  Changes:
+  - Changes:
 
     - Boxplot made by compmeans now have relative widths and the boxes have
       gray color.
 
     - Adapt the width of cross tables to options("width").
 
-  Bug fix:
+  - Bug fix:
 
     - CrossTable, crosstab and compmeans: Correctly calculate widths if the
       text is in Chinese (thanks to Wincent Ronggui Huang for reporting the
@@ -152,15 +146,14 @@ Version 0.9.7 (2011-12-12)
     - print.CrossTable() and xtable.CrossTable(): handle the argument dnn,
       which was being ignored.
 
-Version 0.4.2 (2011-11-24)
---------------------------
+0.4.2 (2011-11-24)
 
-  Changes:
+  - Changes:
 
     - Replace method odfTable.CrossTable with function forODFTable to avoid
       dependency on odfWeave which currently is not installable on Windows.
 
-  Bug fix:
+  - Bug fix:
 
     - CrossTable(): Improve documentation about default values of chisq,
       resid, sresid, and asresid. Set the value of expected to TRUE if
@@ -168,39 +161,35 @@ Version 0.4.2 (2011-11-24)
       bugs).
 
 
-Version 0.4.1 (2011-09-06)
---------------------------
+0.4.1 (2011-09-06)
 
-  Bug fix:
+  - Bug fix:
 
     - file.head(): Does not fail if file encoding is Latin1 or other single
                    byte encoding and system encoding is UTF-8 (thanks to
                    Sergio Martins for reporting the bug).
 
 
-Version 0.4.0 (2011-06-25)
---------------------------
+0.4.0 (2011-06-25)
 
-  Changes:
+  - Changes:
 
     - odfTable method for object of class CrossTable.
 
     - Improved xtable method for object of class CrossTable.
 
 
-Version 0.3.4 (2011-04-24)
---------------------------
+0.3.4 (2011-04-24)
 
-  Changes:
+  - Changes:
 
     - Objects of classes meanscomp, freqtable and CrossTable now have
       plot methods.
 
 
-Version 0.3.3 (2011-02-08)
---------------------------
+0.3.3 (2011-02-08)
 
-  Changes:
+  - Changes:
 
     - compmeans(): When sort=T the boxplots are sorted too.
                    Uses wtd.boxplot of package NEmisc.
@@ -213,15 +202,14 @@ Version 0.3.3 (2011-02-08)
     - fwf2csv: Only prints message about number of lines saved 
       if the value of "verbose" option is TRUE.
 
-  New features:
+  - New features:
 
     - Added argument user.missing to freq(), compmeans(), and crosstab().
 
 
-Version 0.3.2 (2009-10-11)
---------------------------
+0.3.2 (2009-10-11)
 
-  Bug fixes:
+  - Bug fixes:
 
     - Fixed documentation link to read.fwf().
 
@@ -230,7 +218,7 @@ Version 0.3.2 (2009-10-11)
     - Fixed conversion of fwf into csv when the fwf had \r\n line terminators
       and R was running on Linux. Also fixed reading of strings with spaces.
 
-  Changes:
+  - Changes:
 
     - Inverted colors in the mosaic plot produced by crosstab().
 
@@ -244,16 +232,15 @@ Version 0.3.2 (2009-10-11)
         - getOption("OutDec") now is used to format the numbers.
         - Expected frequency now is always printed with one decimal digit.
 
-  New features:
+  - New features:
 
     - Added function file.head(), which shows the first lines of a file (useful
       before read.table()).
 
 
-Version 0.3.1 (2009-08-11)
---------------------------
+0.3.1 (2009-08-11)
 
-  New features:
+  - New features:
 
     - Included a version of CrossTable, adapted from gmodels package, with
       methods for print and xtable.
@@ -261,10 +248,9 @@ Version 0.3.1 (2009-08-11)
     - Added xtable methods for classes freqtable and meanscomp.
 
 
-Version 0.3.0 (2009-06-07)
---------------------------
+0.3.0 (2009-06-07)
 
-  New features:
+  - New features:
 
     - Added plot option to crosstab, compmeans and freq.
 
@@ -272,7 +258,7 @@ Version 0.3.0 (2009-06-07)
 
     - LogRegR2 now accepts "probit" models.
 
-  Bug fixes:
+  - Bug fixes:
 
     - Fixed bug in the weighted standard deviation calculus in compmeans.
 
