@@ -42,22 +42,40 @@ fwf2csv(fwffile, csvfile, names, begin, end,
   \samp{fread()} from \pkg{data.table} package.}
 
 \examples{
-\dontrun{
+# Column:     12345678901234567
+writeLines(c("CE  1  11M43 2000",
+             "CE  1  12F40 1800",
+             "CE  1  13F 9    0",
+             "CE  1  13M 6    0",
+             "CE  2  21F36 1200",
+             "CE  2  23M 6    0",
+             "BA  1  11M33 2100",
+             "BA  1  12F34 2300",
+             "BA  1  13M10    0",
+             "BA  1  13F 7    0",
+             "BA  2  21F26 3600",
+             "BA  2  22M27 3200",
+             "BA  2  23F 2    0"),
+           con = "example.txt")
+
 tab <- rbind(c("state",   1,  2),
              c("municp",  3,  5),
              c("house",   6,  8),
              c("cond",    9,  9),
              c("sex",    10, 10),
              c("age",    11, 12),
-             c("income", 13, 16))
+             c("income", 13, 17))
 
 fwf2csv("example.txt", "example.csv",
         names = tab[, 1],
         begin = as.numeric(tab[, 2]),
         end = as.numeric(tab[, 3]))
-df <- read.table("example.csv", header = TRUE,
+d <- read.table("example.csv", header = TRUE,
                  sep = "\t", quote = "")
-}
+d$cond <- factor(d$cond, levels = c(1, 2, 3),
+                 labels = c("Reference", "Spouse", "Child"))
+d$sex <- factor(d$sex)
+d
 }
 
 \author{Jakson A. Aquino \email{jalvesaq@gmail.com}}
