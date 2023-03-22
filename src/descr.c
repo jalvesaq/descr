@@ -22,6 +22,7 @@
 
 #include <R_ext/Rdynload.h>
 #include <R_ext/Visibility.h>
+#include <Rinternals.h>
 
 void realfwf2csv(char **fwffile, char **csvfile, char **names, int *begin,
         int *end, int *ncols, int *verbose){
@@ -151,9 +152,13 @@ void realfwf2csv(char **fwffile, char **csvfile, char **names, int *begin,
                     nskipped, fwffile[0]);
 }
 
+static R_NativePrimitiveArgType realfwf2csv_type[] = {
+    STRSXP, STRSXP, STRSXP, INTSXP, INTSXP, INTSXP, LGLSXP
+};
+
 static const R_CMethodDef CEntries[] = {
-    {"realfwf2csv",  (DL_FUNC) &realfwf2csv, 7},
-    {NULL, NULL, 0}
+    {"realfwf2csv",  (DL_FUNC) &realfwf2csv, 7, realfwf2csv_type},
+    {NULL, NULL, 0, NULL}
 };
 
 void attribute_visible R_init_descr(DllInfo *info)

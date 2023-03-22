@@ -42,6 +42,9 @@ fwf2csv(fwffile, csvfile, names, begin, end,
   \samp{fread()} from \pkg{data.table} package.}
 
 \examples{
+txt_file <- tempfile()
+csv_file <- tempfile()
+
 # Column:     12345678901234567
 writeLines(c("CE  1  11M43 2000",
              "CE  1  12F40 1800",
@@ -56,7 +59,7 @@ writeLines(c("CE  1  11M43 2000",
              "BA  2  21F26 3600",
              "BA  2  22M27 3200",
              "BA  2  23F 2    0"),
-           con = "example.txt")
+           con = txt_file)
 
 tab <- rbind(c("state",   1,  2),
              c("municp",  3,  5),
@@ -66,11 +69,11 @@ tab <- rbind(c("state",   1,  2),
              c("age",    11, 12),
              c("income", 13, 17))
 
-fwf2csv("example.txt", "example.csv",
+fwf2csv(txt_file, csv_file,
         names = tab[, 1],
         begin = as.numeric(tab[, 2]),
         end = as.numeric(tab[, 3]))
-d <- read.table("example.csv", header = TRUE,
+d <- read.table(csv_file, header = TRUE,
                  sep = "\t", quote = "")
 d$cond <- factor(d$cond, levels = c(1, 2, 3),
                  labels = c("Reference", "Spouse", "Child"))

@@ -13,15 +13,14 @@ fwf2csv <- function(fwffile, csvfile, names, begin, end, verbose = getOption("ve
     csvfile <- path.expand(csvfile)
     fwffile <- path.expand(fwffile)
 
-    .C("realfwf2csv",
+    .C(realfwf2csv,
 	as.character(fwffile),
 	as.character(csvfile),
 	as.character(names),
 	as.integer(begin),
 	as.integer(end),
 	ncols,
-        as.integer(verbose))
+        as.logical(verbose))
 
     return (invisible(NULL))
 }
-
