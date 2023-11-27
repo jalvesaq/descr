@@ -24,6 +24,12 @@
 #include <R_ext/Visibility.h>
 #include <Rinternals.h>
 
+#ifdef _WIN64
+#define FMTSIZEOF "llu"
+#else
+#define FMTSIZEOF "lu"
+#endif
+
 void realfwf2csv(char **fwffile, char **csvfile, char **names, int *begin,
         int *end, int *ncols, int *verbose){
 
@@ -52,15 +58,15 @@ void realfwf2csv(char **fwffile, char **csvfile, char **names, int *begin,
 
     value = (char*)malloc((maxvlen + 3) * sizeof(char));
     if(value == NULL){
-        REprintf(_("Error: could not allocate memory (%lu bytes)\n"), maxvlen + 3 *
-                sizeof(char));
+        REprintf(_("Error: could not allocate memory (%" FMTSIZEOF " bytes)\n"),
+                 maxvlen + 3 * sizeof(char));
         return;
     }
 
     b = (char*)malloc((maxget + 3) * sizeof(char));
     if(b == NULL){
-        REprintf(_("Error: could not allocate memory (%lu bytes)\n"), maxget + 3 *
-                sizeof(char));
+        REprintf(_("Error: could not allocate memory (%" FMTSIZEOF "bytes)\n"),
+                 maxget + 3 * sizeof(char));
         return;
     }
     fwf = fopen(fwffile[0], "r");
