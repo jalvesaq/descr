@@ -1,3 +1,7 @@
+1.1.9 (2026-04-28)
+
+ - Update DESCRIPTION (replace Author and Maintainer with Authors@R).
+
 1.1.8 (2023-11-27)
 
  - Fix compiler warning.
